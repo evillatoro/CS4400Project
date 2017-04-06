@@ -17,5 +17,10 @@ public class RegistrationController {
     }
 
     //TODO: make handleCancelPressed (look at LoginController as guide)
+    public void handleCancelPressed() {
+        mainApplication.displayLoginScene();
+    }
     //TODO: make sure to link the Button to the action (go to Login.fxml and see how onAction works
+
+
 }
