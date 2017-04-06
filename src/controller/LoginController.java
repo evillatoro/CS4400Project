@@ -1,6 +1,7 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.fxml.FXML;
 
 public class LoginController {
 
@@ -14,5 +15,13 @@ public class LoginController {
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
+    }
+
+    /**
+     * called when the user clicks register
+     */
+    @FXML
+    private void handleRegisterPressed() {
+        mainApplication.displayRegisterScene();
     }
 }

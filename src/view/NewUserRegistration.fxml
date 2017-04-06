@@ -10,10 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="389.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="389.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationController">
    <children>
-      <Button layoutX="165.0" layoutY="404.0" mnemonicParsing="false" text="Create" />
+      <Button layoutX="228.0" layoutY="404.0" mnemonicParsing="false" text="Create" />
       <ChoiceBox layoutX="135.0" layoutY="279.0" prefHeight="27.0" prefWidth="98.0" />
       <ChoiceBox layoutX="135.0" layoutY="313.0" prefHeight="27.0" prefWidth="98.0" />
       <ChoiceBox layoutX="164.0" layoutY="217.0" prefHeight="27.0" prefWidth="128.0" />
@@ -83,5 +82,6 @@
       <Line endX="20.0" layoutX="394.0" layoutY="327.0" rotate="90.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="288.0" layoutX="99.0" layoutY="14.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="288.0" layoutX="99.0" layoutY="446.0" startX="-100.0" strokeWidth="2.0" />
+      <Button layoutX="94.0" layoutY="404.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </Pane>
