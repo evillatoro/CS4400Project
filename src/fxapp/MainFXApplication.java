@@ -6,6 +6,9 @@ import controller.FunctionalityCityOfficialController;
 import controller.FunctionalityCityScientistController;
 import controller.LoginController;
 import controller.AddNewLocationController;
+import controller.POIReportController;
+import controller.PendingCityOfficialAccountsController;
+import controller.PendingDataPointsController;
 import controller.RegistrationController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -136,11 +139,27 @@ public class MainFXApplication extends Application {
     }
 
     private void loadPendingDataPointsScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/PendingDataPoints.fxml"));
+        Pane pendingDataPointsLayout = loader.load();
 
+        // Give the controller access to the main app.
+        PendingDataPointsController controller = loader.getController();
+        controller.setMainApp(this);
+
+        pendingCityOfficialAccountsScene = new Scene(pendingDataPointsLayout);
     }
 
     private void loadPendingCityOfficialAccountsScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/PendingCityOfficials.fxml"));
+        Pane pendingCityOfficialAccountsLayout = loader.load();
 
+        // Give the controller access to the main app.
+        PendingCityOfficialAccountsController controller = loader.getController();
+        controller.setMainApp(this);
+
+        pendingCityOfficialAccountsScene = new Scene(pendingCityOfficialAccountsLayout);
     }
 
     private void loadFunctionalityCityOfficialScene() throws IOException {
@@ -164,7 +183,15 @@ public class MainFXApplication extends Application {
     }
 
     private void loadPOIReportScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/POIReport.fxml"));
+        Pane POIReportLayout = loader.load();
 
+        // Give the controller access to the main app.
+        POIReportController controller = loader.getController();
+        controller.setMainApp(this);
+
+        pendingCityOfficialAccountsScene = new Scene(POIReportLayout);
     }
 
     /**

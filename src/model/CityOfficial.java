@@ -3,14 +3,14 @@ package model;
 /**
  * represents a City Official Object
  */
-public class CityOfficial extends User{
+public class CityOfficial extends User {
 
     private String title;
     private Boolean approved;
     private CityState cityState;
 
     /**
-     * makes a City Official with a username, password, email, title, CityState object and default approved false
+     * makes a City Official with a username, password, email, title, CityState object, and default approved false
      * used to store into database
      * @param username  City Official username
      * @param password  City Official password
@@ -23,7 +23,7 @@ public class CityOfficial extends User{
     }
 
     /**
-     * makes a City Official with a username, password, email, title, and default approved false
+     * makes a City Official with a username, password, email, title, CityState Object, and approved status
      * used when loading from database
      * @param username  City Official username
      * @param password  City Official password
