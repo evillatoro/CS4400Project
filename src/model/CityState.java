@@ -1,7 +1,7 @@
 package model;
 
 /**
- * represent a City Official Object
+ * represents a City State Object
  */
 public class CityState {
 

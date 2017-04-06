@@ -1,7 +1,7 @@
 package model;
 
 /**
- * represent a User Object
+ * represents a User Object
  */
 public class User {
 

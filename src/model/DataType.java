@@ -1,14 +1,14 @@
 package model;
 
 /**
- * represent a DataType Object
+ * represents a DataType Object
  */
 public class DataType {
 
     private String dataTypeName;
 
     /**
-     * make a DataType with a name
+     * makes a DataType with a name
      * @param name DataType name
      */
     public DataType(String name) {
