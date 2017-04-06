@@ -2,7 +2,7 @@ package controller;
 
 import fxapp.MainFXApplication;
 
-public class RegistrationController {
+public class FunctionalityAdminController {
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
@@ -14,12 +14,5 @@ public class RegistrationController {
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
-    }
-
-    /**
-     * called when the user clicks cancel
-     */
-    public void handleCancelPressed() {
-        mainApplication.displayLoginScene();
     }
 }
