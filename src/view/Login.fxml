@@ -7,10 +7,12 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="400.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
     <children>
-        <Button onAction="#handleRegisterPressed" layoutX="208.0" layoutY="150.0" mnemonicParsing="false" text="Register" />
+        <Button layoutX="208.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleRegisterPressed" text="Register">
+         <font>
+            <Font name="Atlanta Book" size="13.0" />
+         </font></Button>
         <Label layoutX="171.0" layoutY="28.0" text="Login" textFill="#c99e03">
             <font>
                 <Font name="Atlanta Book" size="18.0" />
@@ -28,8 +30,11 @@
         </Label>
         <TextField fx:id="usernameField" layoutX="199.0" layoutY="63.0" />
         <TextField fx:id="passwordField" layoutX="199.0" layoutY="103.0" />
-        <Line endX="400.0" layoutY="15.0" strokeWidth="2.0" />
-        <Line endX="400.0" layoutY="235.0" strokeWidth="2.0" />
-      <Button onAction="#handleLoginPressed" layoutX="123.0" layoutY="150.0" mnemonicParsing="false" text="Login" />
+        <Line endX="399.0" layoutY="15.0" strokeWidth="2.0" />
+        <Line endX="399.0" layoutY="235.0" strokeWidth="2.0" />
+      <Button layoutX="123.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleLoginPressed" text="Login">
+         <font>
+            <Font name="Atlanta Book" size="13.0" />
+         </font></Button>
     </children>
 </Pane>
