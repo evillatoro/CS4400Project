@@ -42,7 +42,7 @@ public class RegistrationController {
     }
 
     /**
-     * called when the user clicks cancel
+     * called when the user clicks create
      */
     public void handleCreatePressed() {
         User user = new User(
