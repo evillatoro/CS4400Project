@@ -44,4 +44,8 @@ public final class Model {
     public void loadDataTypes() {
         database.loadDataTypesFromDatabase();
     }
+
+    public void loadPendingCityOfficials() {
+        database.loadPendingCityOfficialsFromDatabase();
+    }
 }

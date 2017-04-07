@@ -27,19 +27,19 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="429.0" layoutY="262.0" mnemonicParsing="false" text="Accept">
+      <Button onAction="#handleAcceptPressed" layoutX="429.0" layoutY="262.0" mnemonicParsing="false" text="Accept">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="18.0" layoutY="58.0" prefHeight="191.0" prefWidth="528.0" style="-fx-border-color: black; -fx-border-width: 2;">
+      <TableView fx:id="cityOfficialTable" layoutX="18.0" layoutY="58.0" prefHeight="191.0" prefWidth="528.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
-          <TableColumn prefWidth="52.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Select" />
-          <TableColumn editable="false" prefWidth="104.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Username" />
-            <TableColumn editable="false" prefWidth="166.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Email" />
-            <TableColumn editable="false" prefWidth="72.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
-            <TableColumn editable="false" prefWidth="54.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
-            <TableColumn editable="false" prefWidth="77.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Title" />
+          <TableColumn fx:id="selectCol" prefWidth="52.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Select" />
+          <TableColumn fx:id="usernameCol" editable="false" prefWidth="104.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Username" />
+            <TableColumn fx:id="emailCol" editable="false" prefWidth="166.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Email" />
+            <TableColumn fx:id="cityCol" editable="false" prefWidth="72.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
+            <TableColumn fx:id="stateCol" editable="false" prefWidth="54.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
+            <TableColumn fx:id="titleCol" editable="false" prefWidth="77.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Title" />
         </columns>
       </TableView>
    </children>

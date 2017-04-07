@@ -10,7 +10,7 @@ public class DataType {
 
     private String dataTypeName;
 
-    /** a list of all the water purity reports*/
+    /** a list of all the data types*/
     private static ObservableList<String> dataTypes = FXCollections.observableArrayList();
 
     /**

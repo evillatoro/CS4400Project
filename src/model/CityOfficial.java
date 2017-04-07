@@ -1,13 +1,24 @@
 package model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * represents a City Official Object
  */
 public class CityOfficial extends User {
 
-    private String title;
+    private final SimpleStringProperty title;
+    private final SimpleStringProperty city;
+    private final SimpleStringProperty state;
+
+    //private String title;
     private Boolean approved;
     private CityState cityState;
+
+    /** a list of all the data types*/
+    private static ObservableList<CityOfficial> cityOfficials = FXCollections.observableArrayList();
 
     /**
      * makes a City Official with a username, password, email, title, CityState object, and default approved false
@@ -33,17 +44,35 @@ public class CityOfficial extends User {
      */
     public CityOfficial(String username, String password, String email, String title, CityState cityState, boolean approved) {
         super(username, password, email, "city official");
-        this.title = title;
+        this.title = new SimpleStringProperty(title);
         this.cityState = cityState;
         this.approved = approved;
+        this.city = new SimpleStringProperty(cityState.getCity());
+        this.state = new SimpleStringProperty(cityState.getState());
     }
 
     public String getTitle() {
-        return title;
+        return title.get();
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title.set(title);
+    }
+
+    public String getCity() {
+        return city.get();
+    }
+
+    public void setCity(String city) {
+        this.city.set(city);
+    }
+
+    public String getState() {
+        return state.get();
+    }
+
+    public void setState(String state) {
+        this.state.set(state);
     }
 
     public CityState getCityState() {
@@ -60,5 +89,13 @@ public class CityOfficial extends User {
 
     public void setApproved(Boolean approved) {
         this.approved = approved;
+    }
+
+    public static ObservableList<CityOfficial> getCityOfficials() {
+        return cityOfficials;
+    }
+
+    public static void setCityOfficials(ObservableList<CityOfficial> cityOfficials) {
+        CityOfficial.cityOfficials = cityOfficials;
     }
 }

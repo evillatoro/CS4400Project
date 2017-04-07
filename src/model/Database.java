@@ -129,4 +129,37 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    /**
+     * loads the pending city officials
+     */
+    public void loadPendingCityOfficialsFromDatabase() {
+        System.out.println("City Officials refreshed");
+        CityOfficial.getCityOfficials().clear();
+        try {
+            String query = "SELECT * FROM city_official INNER JOIN user ON city_official.username = user.username WHERE NOT city_official.approval";
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                CityState cityState = new CityState(rs.getString("city"), rs.getString("state"));
+
+                CityOfficial cityOfficial = new CityOfficial(
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getString("title"), cityState
+                        );
+//                CityOfficial cityOfficial = new CityOfficial(
+//                        "hi",
+//                        "lol",
+//                        "lollollol",
+//                        rs.getString("title"), cityState
+//                );
+                CityOfficial.getCityOfficials().add(cityOfficial);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
