@@ -1,16 +1,24 @@
 package model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * represents a Datapoint object
  */
 public class Datapoint {
 
-    private String locationName;
-    private String date;
-    private String time;
+    private final SimpleStringProperty locationName;
+    private final SimpleStringProperty date;
+    private final SimpleStringProperty time;
+
     private int dataValue;
     private DataType dataType;
     private Boolean accepted;
+
+    /** a list of all the datapoints*/
+    private static ObservableList<Datapoint> dataPoints = FXCollections.observableArrayList();
 
     /**
      * makes a Datapoint with a location name, date, time, data value, data type, and approved status
@@ -23,9 +31,9 @@ public class Datapoint {
      * @param accepted      Datapoint accepted
      */
     public Datapoint(String locationName, String date, String time, int dataValue, DataType dataType, Boolean accepted) {
-        this.locationName = locationName;
-        this.date = date;
-        this.time = time;
+        this.locationName = new SimpleStringProperty(locationName);
+        this.date = new SimpleStringProperty(date);
+        this.time = new SimpleStringProperty(time);
         this.dataValue = dataValue;
         this.dataType = dataType;
         this.accepted = accepted;
@@ -45,27 +53,27 @@ public class Datapoint {
     }
 
     public String getLocationName() {
-        return locationName;
+        return locationName.get();
     }
 
     private void setLocationName(String locationName) {
-        this.locationName = locationName;
+        this.locationName.set(locationName);
     }
 
     public String getDate() {
-        return date;
+        return date.get();
     }
 
     private void setDate(String date) {
-        this.date = date;
+        this.date.set(date);
     }
 
     public String getTime() {
-        return time;
+        return time.get();
     }
 
     private void setTime(String time) {
-        this.time = time;
+        this.time.set(time);
     }
 
     public int getDataValue() {
@@ -90,5 +98,9 @@ public class Datapoint {
 
     private void setAccepted(Boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public static void setDataPoints(ObservableList<Datapoint> dataPoints) {
+        Datapoint.dataPoints = dataPoints;
     }
 }

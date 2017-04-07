@@ -17,7 +17,7 @@ public class CityOfficial extends User {
     private Boolean approved;
     private CityState cityState;
 
-    /** a list of all the data types*/
+    /** a list of all the city officials*/
     private static ObservableList<CityOfficial> cityOfficials = FXCollections.observableArrayList();
 
     /**

@@ -149,17 +149,25 @@ public class Database {
                         rs.getString("email"),
                         rs.getString("title"), cityState
                         );
-//                CityOfficial cityOfficial = new CityOfficial(
-//                        "hi",
-//                        "lol",
-//                        "lollollol",
-//                        rs.getString("title"), cityState
-//                );
                 CityOfficial.getCityOfficials().add(cityOfficial);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * loads the pending city officials
+     */
+    public void acceptDataPoint() {
+        // TODO: 4/7/2017  
+    }
+
+    /**
+     * loads the pending city officials
+     */
+    public void rejectDataPoint() {
+        // TODO: 4/7/2017  
     }
 }
