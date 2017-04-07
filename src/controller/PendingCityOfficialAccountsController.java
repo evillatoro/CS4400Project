@@ -99,7 +99,7 @@ public class PendingCityOfficialAccountsController {
     }
 
     /**
-     * called when the user clicks back
+     * called when the user clicks accept
      */
     @FXML
     private void handleAcceptPressed() {
