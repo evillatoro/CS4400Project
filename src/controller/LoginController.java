@@ -3,6 +3,7 @@ package controller;
 import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Model;
@@ -13,7 +14,7 @@ public class LoginController {
     @FXML
     private TextField usernameField;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
