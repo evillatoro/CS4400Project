@@ -74,7 +74,7 @@ public class AddNewDataPointController {
 
     /**
      * checks if input is valid
-     * @return
+     * @return true if the input is valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
