@@ -30,12 +30,12 @@
             </font>
         </Label>
         <TextField fx:id="usernameField" layoutX="199.0" layoutY="63.0" />
+        <PasswordField fx:id="passwordField" layoutX="199.0" layoutY="103.0" />
         <Line endX="399.0" layoutY="15.0" strokeWidth="2.0" />
         <Line endX="399.0" layoutY="235.0" strokeWidth="2.0" />
       <Button layoutX="123.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleLoginPressed" text="Login">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font></Button>
-      <PasswordField fx:id="passwordField" layoutX="199.0" layoutY="103.0" />
     </children>
 </Pane>
