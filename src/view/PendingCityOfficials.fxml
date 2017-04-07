@@ -22,7 +22,7 @@
       </Button>
       <Line endX="462.0" layoutX="101.0" layoutY="20.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="462.0" layoutX="102.0" layoutY="313.0" startX="-100.0" strokeWidth="2.0" />
-      <Button layoutX="77.0" layoutY="262.0" mnemonicParsing="false" text="Back">
+      <Button onAction="#handleBackPressed" layoutX="77.0" layoutY="262.0" mnemonicParsing="false" text="Back">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>

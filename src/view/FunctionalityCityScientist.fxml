@@ -13,19 +13,19 @@
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="352.0" layoutY="204.0" mnemonicParsing="false" text="Log out">
+      <Button onAction="#handleLogoutPressed" layoutX="352.0" layoutY="204.0" mnemonicParsing="false" text="Log out">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
       <Line endX="422.0" layoutX="101.0" layoutY="20.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="422.0" layoutX="101.0" layoutY="266.0" startX="-100.0" strokeWidth="2.0" />
-      <Button layoutX="190.0" layoutY="98.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Add New Data Point" textFill="#1a0ce8" underline="true">
+      <Button onAction="#handleAddNewDataPointPressed" layoutX="190.0" layoutY="98.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Add New Data Point" textFill="#1a0ce8" underline="true">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="196.0" layoutY="144.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Add New Location" textFill="#1a0ce8" underline="true">
+      <Button onAction="#handleAddNewLocationPressed" layoutX="196.0" layoutY="144.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Add New Location" textFill="#1a0ce8" underline="true">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>

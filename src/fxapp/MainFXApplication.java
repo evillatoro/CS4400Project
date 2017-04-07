@@ -1,15 +1,18 @@
 package fxapp;
 
 
+import controller.AddNewDataPointController;
 import controller.FunctionalityAdminController;
 import controller.FunctionalityCityOfficialController;
 import controller.FunctionalityCityScientistController;
 import controller.LoginController;
 import controller.AddNewLocationController;
+import controller.POIDetailController;
 import controller.POIReportController;
 import controller.PendingCityOfficialAccountsController;
 import controller.PendingDataPointsController;
 import controller.RegistrationController;
+import controller.ViewPOIsController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -111,7 +114,15 @@ public class MainFXApplication extends Application {
     }
 
     private void loadAddNewDataPointScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/AddNewDataPoint.fxml"));
+        Pane POIReportLayout = loader.load();
 
+        // Give the controller access to the main app.
+        AddNewDataPointController controller = loader.getController();
+        controller.setMainApp(this);
+
+        addNewDataPointScene = new Scene(POIReportLayout);
     }
 
     private void loadAddNewLocationScene() throws IOException {
@@ -147,7 +158,7 @@ public class MainFXApplication extends Application {
         PendingDataPointsController controller = loader.getController();
         controller.setMainApp(this);
 
-        pendingCityOfficialAccountsScene = new Scene(pendingDataPointsLayout);
+        pendingDataPointsScene = new Scene(pendingDataPointsLayout);
     }
 
     private void loadPendingCityOfficialAccountsScene() throws IOException {
@@ -175,11 +186,27 @@ public class MainFXApplication extends Application {
     }
 
     private void loadViewPOIsScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/ViewPOIs.fxml"));
+        Pane POIReportLayout = loader.load();
 
+        // Give the controller access to the main app.
+        ViewPOIsController controller = loader.getController();
+        controller.setMainApp(this);
+
+        viewPOIsScene = new Scene(POIReportLayout);
     }
 
     private void loadPOIDetailScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainFXApplication.class.getResource("../view/POIDetail.fxml"));
+        Pane POIReportLayout = loader.load();
 
+        // Give the controller access to the main app.
+        POIDetailController controller = loader.getController();
+        controller.setMainApp(this);
+
+        POIDetailScene = new Scene(POIReportLayout);
     }
 
     private void loadPOIReportScene() throws IOException {
@@ -191,7 +218,7 @@ public class MainFXApplication extends Application {
         POIReportController controller = loader.getController();
         controller.setMainApp(this);
 
-        pendingCityOfficialAccountsScene = new Scene(POIReportLayout);
+        POIReportScene = new Scene(POIReportLayout);
     }
 
     /**
@@ -222,7 +249,8 @@ public class MainFXApplication extends Application {
      * display login scene
      */
     public void displayAddNewDataPointScene() {
-
+        window.setScene(addNewDataPointScene);
+        window.show();
     }
 
     /**
@@ -245,20 +273,22 @@ public class MainFXApplication extends Application {
      * display pending data points scene
      */
     public void displayPendingDataPointsScene() {
-
+        window.setScene(pendingDataPointsScene);
+        window.show();
     }
 
     /**
      * display pending city official accounts scene
      */
     public void displayPendingCityOfficialAccountsScene() {
-
+        window.setScene(pendingCityOfficialAccountsScene);
+        window.show();
     }
 
     /**
      * display functionality city official scene
      */
-    public void displayfunctionalityCityOfficialScene() {
+    public void displayFunctionalityCityOfficialScene() {
         window.setScene(functionalityCityOfficialScene);
         window.show();
     }
@@ -267,20 +297,23 @@ public class MainFXApplication extends Application {
      * display view POIs scene
      */
     public void displayViewPOIsScene() {
-
+        window.setScene(viewPOIsScene);
+        window.show();
     }
 
     /**
      * display POI detail scene
      */
     public void displayPOIDetailScene() {
-
+        window.setScene(POIDetailScene);
+        window.show();
     }
 
     /**
      * display POI report scene
      */
     public void displayPOIReportScene() {
-
+        window.setScene(POIReportScene);
+        window.show();
     }
 }

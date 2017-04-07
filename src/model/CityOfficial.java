@@ -32,7 +32,7 @@ public class CityOfficial extends User {
      * @param cityState City Official city and state
      */
     public CityOfficial(String username, String password, String email, String title, CityState cityState, boolean approved) {
-        super(username, password, email);
+        super(username, password, email, "city official");
         this.title = title;
         this.cityState = cityState;
         this.approved = approved;

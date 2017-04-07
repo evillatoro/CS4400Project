@@ -12,6 +12,6 @@ public class CityScientist extends User {
      * @param email    City Scientist email
      */
     public CityScientist(String username, String password, String email, String title) {
-        super(username, password, email);
+        super(username, password, email, "city scientist");
     }
 }

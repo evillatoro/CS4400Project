@@ -1,6 +1,7 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.fxml.FXML;
 
 public class FunctionalityAdminController {
 
@@ -14,5 +15,29 @@ public class FunctionalityAdminController {
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
+    }
+
+    /**
+     * called when the user clicks logout
+     */
+    @FXML
+    private void handlePendingDataPointsPressed() {
+        mainApplication.displayPendingDataPointsScene();
+    }
+
+    /**
+     * called when the user clicks logout
+     */
+    @FXML
+    private void handlePendingCityOfficialAccountsPressed() {
+        mainApplication.displayPendingCityOfficialAccountsScene();
+    }
+
+    /**
+     * called when the user clicks logout
+     */
+    @FXML
+    private void handleLogoutPressed() {
+        mainApplication.displayLoginScene();
     }
 }

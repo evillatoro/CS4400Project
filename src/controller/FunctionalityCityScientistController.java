@@ -1,6 +1,7 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.fxml.FXML;
 
 public class FunctionalityCityScientistController {
 
@@ -14,5 +15,29 @@ public class FunctionalityCityScientistController {
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
+    }
+
+    /**
+     * called when the user clicks add new data point
+     */
+    @FXML
+    private void handleAddNewDataPointPressed() {
+        mainApplication.displayAddNewDataPointScene();
+    }
+
+    /**
+     * called when the user clicks add new location
+     */
+    @FXML
+    private void handleAddNewLocationPressed() {
+        mainApplication.displayAddNewLocationScene();
+    }
+
+    /**
+     * called when the user clicks logout
+     */
+    @FXML
+    private void handleLogoutPressed() {
+        mainApplication.displayLoginScene();
     }
 }

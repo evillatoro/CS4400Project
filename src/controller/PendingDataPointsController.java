@@ -1,6 +1,7 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.fxml.FXML;
 
 public class PendingDataPointsController {
 
@@ -14,5 +15,13 @@ public class PendingDataPointsController {
      */
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
+    }
+
+    /**
+     * called when the user clicks back
+     */
+    @FXML
+    private void handleBackPressed() {
+        mainApplication.displayFunctionalityAdminScene();
     }
 }
