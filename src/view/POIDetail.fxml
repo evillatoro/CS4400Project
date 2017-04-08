@@ -20,7 +20,7 @@
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="366.0" layoutY="249.0" mnemonicParsing="false" text="Apply FIlter">
+      <Button onAction="#handleApplyFilterPressed" layoutX="366.0" layoutY="249.0" mnemonicParsing="false" text="Apply Filter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -32,19 +32,19 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="495.0" layoutY="249.0" mnemonicParsing="false" text="Reset Filter">
+      <Button onAction="#handleResetFilterPressed" layoutX="495.0" layoutY="249.0" mnemonicParsing="false" text="Reset Filter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="114.0" layoutY="322.0" prefHeight="191.0" prefWidth="407.0" style="-fx-border-color: black; -fx-border-width: 2;">
+      <TableView fx:id="POIDetailTableView" layoutX="114.0" layoutY="322.0" prefHeight="191.0" prefWidth="407.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
           <TableColumn editable="false" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
           <TableColumn editable="false" prefWidth="92.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
             <TableColumn editable="false" prefWidth="231.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time &amp; Date of Reading" />
         </columns>
       </TableView>
-      <Button layoutX="499.0" layoutY="530.0" mnemonicParsing="false" text="Flag">
+      <Button onAction="#handleFlagPressed" layoutX="499.0" layoutY="530.0" mnemonicParsing="false" text="Flag">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -80,17 +80,17 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="122.0" layoutY="80.0" prefHeight="17.0" prefWidth="95.0" />
-      <TextField layoutX="122.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
-      <TextField layoutX="228.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="typeChoiceBox" layoutX="122.0" layoutY="80.0" prefHeight="17.0" prefWidth="95.0" />
+      <TextField fx:id="dataValueMin" layoutX="122.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
+      <TextField fx:id="dataValueMax" layoutX="228.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
       <Text layoutX="23.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POI Location:">
          <font>
             <Font name="Atlanta Book" size="10.0" />
          </font>
       </Text>
-      <JFXTimePicker defaultColor="BLACK" layoutX="237.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
-      <JFXDatePicker defaultColor="BLACK" layoutX="122.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
-      <JFXDatePicker defaultColor="BLACK" layoutX="389.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
-      <JFXTimePicker defaultColor="BLACK" layoutX="504.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
+      <JFXTimePicker fx:id="timePickerMin" defaultColor="BLACK" layoutX="237.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
+      <JFXDatePicker fx:id="datePickerMin" defaultColor="BLACK" layoutX="122.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
+      <JFXDatePicker fx:id="datePickerMax" defaultColor="BLACK" layoutX="389.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
+      <JFXTimePicker fx:id="timePickerMax" defaultColor="BLACK" layoutX="504.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
    </children>
 </Pane>

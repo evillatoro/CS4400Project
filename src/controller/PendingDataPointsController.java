@@ -17,6 +17,23 @@ public class PendingDataPointsController {
         mainApplication = mainFXApplication;
     }
 
+
+
+    /**
+     * called when the user clicks accept
+     */
+    @FXML
+    private void handleAcceptPressed() {
+    }
+
+    /**
+     * called when the user clicks reject
+     */
+    @FXML
+    private void handleRejectPressed() {
+
+    }
+
     /**
      * called when the user clicks back
      */

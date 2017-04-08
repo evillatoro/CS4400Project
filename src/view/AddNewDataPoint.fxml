@@ -17,7 +17,7 @@
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="397.0" layoutY="241.0" mnemonicParsing="false" text="Submit">
+      <Button onAction="#handleSubmitPressed" layoutX="397.0" layoutY="241.0" mnemonicParsing="false" text="Submit">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -51,13 +51,13 @@
       </Label>
       <ChoiceBox fx:id="POILocationNameComboBox" layoutX="181.0" layoutY="58.0" prefHeight="28.0" prefWidth="186.0" />
       <ChoiceBox fx:id="dataTypeComboBox" layoutX="181.0" layoutY="145.0" prefHeight="26.0" prefWidth="98.0" />
-      <TextField layoutX="181.0" layoutY="187.0" prefHeight="24.0" prefWidth="263.0" />
+      <TextField fx:id="dataValueNewDataPoint" layoutX="181.0" layoutY="187.0" prefHeight="24.0" prefWidth="263.0" />
       <Button layoutX="81.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <JFXDatePicker defaultColor="BLACK" layoutX="181.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
-      <JFXTimePicker defaultColor="BLACK" layoutX="343.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
+      <JFXDatePicker fx:id="datePickerNewDataPoint" defaultColor="BLACK" layoutX="181.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
+      <JFXTimePicker fx:id="timePickerNewDataPoint" defaultColor="BLACK" layoutX="343.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
    </children>
 </Pane>
