@@ -13,26 +13,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="565.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewPOIsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="565.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewPOIsController">
    <children>
       <Label layoutX="239.0" layoutY="35.0" text="View POIs" textFill="#c99e03">
          <font>
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="319.0" layoutY="333.0" mnemonicParsing="false" text="Apply FIlter">
+      <Button onAction= "#handleApplyFilterPressed" layoutX="319.0" layoutY="333.0" mnemonicParsing="false" text="Apply FIlter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
       <Line endX="462.0" layoutX="101.0" layoutY="20.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="462.0" layoutX="101.0" layoutY="572.0" startX="-100.0" strokeWidth="2.0" />
-      <Button onAction="#handleBackPressed" layoutX="257.0" layoutY="529.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="257.0" layoutY="529.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="430.0" layoutY="333.0" mnemonicParsing="false" text="Reset Filter">
+      <Button onAction="#handleResetFilterPressed" layoutX="430.0" layoutY="333.0" mnemonicParsing="false" text="Reset Filter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -68,10 +68,10 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="177.0" layoutY="81.0" prefHeight="27.0" prefWidth="165.0" />
-      <TextField layoutX="177.0" layoutY="212.0" prefHeight="27.0" prefWidth="84.0" />
-      <DatePicker layoutX="177.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
-      <DatePicker layoutX="342.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
+      <ChoiceBox fx:id="poiLocationNameChoiceBox" layoutX="177.0" layoutY="81.0" prefHeight="27.0" prefWidth="165.0" />
+      <TextField fx:id="zipCodeTextField" layoutX="177.0" layoutY="212.0" prefHeight="27.0" prefWidth="84.0" />
+      <DatePicker fx:id="fromDatePicker" layoutX="177.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
+      <DatePicker fx:id="toDatePicker" layoutX="342.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
       <Text layoutX="35.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State">
          <font>
             <Font name="Atlanta Book" size="13.0" />
@@ -87,8 +87,8 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox layoutX="177.0" layoutY="169.0" prefHeight="27.0" prefWidth="109.0" />
-      <ChoiceBox layoutX="177.0" layoutY="126.0" prefHeight="17.0" prefWidth="95.0" />
-      <CheckBox layoutX="176.0" layoutY="254.0" mnemonicParsing="false" />
+      <ChoiceBox fx:id="stateChoiceBox" layoutX="177.0" layoutY="169.0" prefHeight="27.0" prefWidth="109.0" />
+      <ChoiceBox fx:id="cityChoiceBox" layoutX="177.0" layoutY="126.0" prefHeight="17.0" prefWidth="95.0" />
+      <CheckBox fx:id="flaggedCheckBox" layoutX="176.0" layoutY="254.0" mnemonicParsing="false" />
    </children>
 </Pane>
