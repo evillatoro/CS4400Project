@@ -72,6 +72,7 @@ public class Database {
 
     private void addCityOfficialToDatabase(CityOfficial cityOfficial) {
 
+
     }
 
     /**
