@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import model.DataType;
+import model.Model;
 
 public class AddNewLocationController {
 
@@ -27,6 +29,16 @@ public class AddNewLocationController {
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
     }
+    /**
+     * sets the choice box with data types
+     */
+    @FXML
+    private void initialize() {
+        Model.getInstance().loadDataTypes();
+        cityChoiceBox.setItems(DataType.getDataTypes());
+        stateChoiceBox.setValue(DataType.getDataTypes().get(0));
+
+    }
 
     /**
      * called when the user clicks back
@@ -41,7 +53,11 @@ public class AddNewLocationController {
      */
     @FXML
     private void handleSubmitPressed() {
-        isInputValid();
+       if (isInputValid()) {
+
+
+       }
+
 
     }
     private boolean isInputValid() {
