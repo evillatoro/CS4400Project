@@ -1,12 +1,16 @@
 package controller;
 
 import fxapp.MainFXApplication;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import model.CityState;
 import model.Model;
 import model.User;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +26,12 @@ public class RegistrationController {
     private TextField confirmPasswordField;
     @FXML
     private ChoiceBox<String> userTypeComboBox;
+    @FXML
+    private ChoiceBox<String> cityComboBox;
+    @FXML
+    private ChoiceBox<String> stateComboBox;
+    @FXML
+    private TextField titleField;
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
@@ -40,8 +50,36 @@ public class RegistrationController {
      */
     @FXML
     private void initialize() {
+        //Model.getInstance().loadCityStates();
+        cityComboBox.setItems(CityState.getCities());
+        cityComboBox.setValue(CityState.getCities().get(0));
+
+        stateComboBox.setItems(CityState.getStates());
+        stateComboBox.setValue(CityState.getStates().get(0));
+
         userTypeComboBox.getItems().addAll("city scientist", "city official");
         userTypeComboBox.setValue("city scientist");
+        userTypeComboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> options, String oldValue, String newValue) {
+                System.out.println(newValue);
+                if(newValue.equals("city official")) {
+                    System.out.println("add co fields");
+                    disableFields(false);
+                } else {
+                    System.out.println("disable co fields");
+                    disableFields(true);
+                }
+            }
+        });
+
+        disableFields(true);
+    }
+
+    private void disableFields(boolean disable) {
+        cityComboBox.setDisable(disable);
+        stateComboBox.setDisable(disable);
+        titleField.setDisable(disable);
     }
 
     /**
@@ -54,7 +92,20 @@ public class RegistrationController {
                     passwordField.getText(),
                     emailField.getText(),
                     userTypeComboBox.getSelectionModel().getSelectedItem());
-            Model.getInstance().addUser(user);
+            // if user is successfully added, take that user to the appropriate screen
+            if (Model.getInstance().addUser(user)) {
+                clearFields();
+            } else {
+                // if the add fails, notify the user
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(mainApplication.getWindow());
+                alert.setTitle("Profile Not Added");
+                alert.setHeaderText("Bad Profile Add");
+                alert.setContentText("Profile was not added," +
+                        "check that they are not already in server!");
+
+                alert.showAndWait();
+            }
         }
     }
 
@@ -79,6 +130,13 @@ public class RegistrationController {
         if (!passwordMatch(passwordField.getText())) {
             errorMessage += "Passwords do not match!\n";
         }
+
+        if (userTypeComboBox.getValue().equals("city official")) {
+            if ((titleField.getText() == null) || (titleField.getText().isEmpty())) {
+                errorMessage += "Not valid title!\n";
+            }
+        }
+
         //no error message means success / good input
         if (errorMessage.isEmpty()) {
             return true;
@@ -101,11 +159,11 @@ public class RegistrationController {
     private boolean isEmailValid(String email) {
         /*
         Email format: A valid email address will have following format:
-        [\\w\\.-]+: Begins with word characters, (may include periods and hypens).
+        [\\w\\.-]+: Begins with word characters, (may include periods and hyphens).
         @: It must have a '@' symbol after initial characters.
-        ([\\w\\-]+\\.)+: '@' must follow by more alphanumeric characters (may include hypens.).
+        ([\\w\\-]+\\.)+: '@' must follow by more alphanumeric characters (may include hyphens.).
         This part must also have a "." to separate domain and subdomain names.
-	    [A-Z]{2,4}$ : Must end with two to four alaphabets.
+	    [A-Z]{2,4}$ : Must end with two to four alphabets.
         (This will allow domain names with 2, 3 and 4 characters e.g net, com, etc.)
         */
 

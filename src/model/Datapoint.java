@@ -14,7 +14,7 @@ public class Datapoint {
     private final SimpleStringProperty time;
 
     private int dataValue;
-    private DataType dataType;
+    private String dataType;
     private Boolean accepted;
 
     /** a list of all the datapoints*/
@@ -30,7 +30,7 @@ public class Datapoint {
      * @param dataType      Datapoint data type
      * @param accepted      Datapoint accepted
      */
-    public Datapoint(String locationName, String date, String time, int dataValue, DataType dataType, Boolean accepted) {
+    public Datapoint(String locationName, String date, String time, int dataValue, String dataType, Boolean accepted) {
         this.locationName = new SimpleStringProperty(locationName);
         this.date = new SimpleStringProperty(date);
         this.time = new SimpleStringProperty(time);
@@ -48,7 +48,7 @@ public class Datapoint {
      * @param dataValue     Datapoint data value
      * @param dataType      Datapoint data type
      */
-    public Datapoint(String locationName, String date, String time, int dataValue, DataType dataType) {
+    public Datapoint(String locationName, String date, String time, int dataValue, String dataType) {
         this(locationName, date, time, dataValue, dataType, false);
     }
 
@@ -84,11 +84,11 @@ public class Datapoint {
         this.dataValue = dataValue;
     }
 
-    public DataType getDataType() {
+    public String getDataType() {
         return dataType;
     }
 
-    private void setDataType(DataType dataType) {
+    private void setDataType(String dataType) {
         this.dataType = dataType;
     }
 

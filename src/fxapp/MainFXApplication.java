@@ -2,11 +2,11 @@ package fxapp;
 
 
 import controller.AddNewDataPointController;
+import controller.AddNewLocationController;
 import controller.FunctionalityAdminController;
 import controller.FunctionalityCityOfficialController;
 import controller.FunctionalityCityScientistController;
 import controller.LoginController;
-import controller.AddNewLocationController;
 import controller.POIDetailController;
 import controller.POIReportController;
 import controller.PendingCityOfficialAccountsController;
@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Model;
 
 import java.io.IOException;
 
@@ -59,7 +60,7 @@ public class MainFXApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         primaryStage.setTitle("CS4400 Project");
-
+        Model.getInstance();
         //load all the scenes first
         loadLoginScene();
         loadRegisterScene();

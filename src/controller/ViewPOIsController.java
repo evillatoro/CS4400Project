@@ -8,7 +8,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.DataType;
-import model.Model;
 
 public class ViewPOIsController {
     @FXML
@@ -42,7 +41,7 @@ public class ViewPOIsController {
      */
     @FXML
     private void initialize() {
-        Model.getInstance().loadDataTypes();
+        //Model.getInstance().loadDataTypes();
         cityChoiceBox.setItems(DataType.getDataTypes());
         stateChoiceBox.setValue(DataType.getDataTypes().get(0));
     }
@@ -67,12 +66,13 @@ public class ViewPOIsController {
     }
 
     /**
-     * called when the user clicks back
+     * called when user presses back button
      */
     @FXML
     private void handleBackPressed() {
         mainApplication.displayFunctionalityCityOfficialScene();
     }
+
     private boolean isInputValid() {
         String errorMessage = "";
 
@@ -101,5 +101,4 @@ public class ViewPOIsController {
             return false;
         }
     }
-
 }

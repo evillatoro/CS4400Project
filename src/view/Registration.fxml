@@ -13,9 +13,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="389.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationController">
    <children>
-      <Button onAction="#handleCreatePressed" layoutX="228.0" layoutY="404.0" mnemonicParsing="false" text="Create" />
-      <ChoiceBox layoutX="135.0" layoutY="279.0" prefHeight="27.0" prefWidth="98.0" />
-      <ChoiceBox layoutX="135.0" layoutY="313.0" prefHeight="27.0" prefWidth="98.0" />
+      <Button layoutX="228.0" layoutY="404.0" mnemonicParsing="false" onAction="#handleCreatePressed" text="Create" />
+      <ChoiceBox fx:id="cityComboBox" layoutX="135.0" layoutY="279.0" prefHeight="27.0" prefWidth="98.0" />
+      <ChoiceBox fx:id="stateComboBox" layoutX="135.0" layoutY="313.0" prefHeight="27.0" prefWidth="98.0" />
       <ChoiceBox fx:id="userTypeComboBox" layoutX="164.0" layoutY="217.0" prefHeight="27.0" prefWidth="128.0" />
       <Label layoutX="86.0" layoutY="319.0" text="State:">
          <font>
@@ -57,7 +57,7 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Label>
-      <TextField layoutX="135.0" layoutY="348.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="titleField" layoutX="135.0" layoutY="348.0" prefHeight="27.0" prefWidth="187.0" />
       <Label layoutX="94.0" layoutY="354.0" text="Title:">
          <font>
             <Font name="Atlanta Book" size="11.0" />

@@ -17,8 +17,6 @@ public class PendingDataPointsController {
         mainApplication = mainFXApplication;
     }
 
-
-
     /**
      * called when the user clicks accept
      */

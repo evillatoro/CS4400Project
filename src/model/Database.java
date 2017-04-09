@@ -35,7 +35,7 @@ public class Database {
      */
     public boolean addUser(User user) {
         try {
-            String query = "SELECT 'username' FROM user WHERE username = ?";
+            String query = "SELECT username FROM user WHERE username = ?";
             st = con.prepareStatement(query);
             st.setString(1, user.getUsername());
             rs = st.executeQuery();
@@ -73,6 +73,59 @@ public class Database {
     private void addCityOfficialToDatabase(CityOfficial cityOfficial) {
 
 
+    }
+
+    /**
+     * adds a poi to the database
+     * @param poi poi to insert into the database
+     * @return true if poi is added, false if poi is in the database already
+     */
+    public boolean addPOIToDatabase(POI poi) {
+        try {
+            String query = "INSERT INTO poi " +
+                    "(location_name, flag, date_flagged, time_flagged, zip_code, city, state) values (?, ?, ?, ?, ?, ?, ?)";
+            st = con.prepareStatement(query);
+            st.setString(1, poi.getName());
+            st.setBoolean(2, poi.getFlagged());
+            st.setString(3, poi.getDateFlagged());
+            st.setString(4, poi.getTimeFlagged());
+            st.setInt(5, poi.getZipCode());
+            st.setString(6, poi.getCityState().getCity());
+            st.setString(7, poi.getCityState().getState());
+            st.execute();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * adds a data point to the database
+     * @param poi data point to insert into the database
+     * @return true if data point is added, false if data point is in the database already
+     */
+    public boolean addDataPointToDatabase(Datapoint poi) {
+        try {
+            String query = "INSERT INTO data_point " +
+                    "(poi_name, date_of_reading, time_of_reading, data_value, data_type, accepted) values (?, ?, ?, ?, ?, ?)";
+            st = con.prepareStatement(query);
+            st.setString(1, poi.getLocationName());
+            st.setString(2, poi.getDate());
+            st.setString(3, poi.getTime());
+            st.setInt(4, poi.getDataValue());
+            st.setString(5, poi.getDataType());
+            st.setBoolean(6, poi.getAccepted());
+            st.execute();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     /**
@@ -131,6 +184,25 @@ public class Database {
         }
     }
 
+    public void loadCityStatesFromDatabase() {
+        System.out.println("CityStates refreshed");
+        CityState.getCities().clear();
+        CityState.getStates().clear();
+        try {
+            String query = "SELECT * FROM city_state";
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                CityState cityState = new CityState(rs.getString("city"), rs.getString("state"));
+                CityState.getCities().add(cityState.getCity());
+                CityState.getStates().add(cityState.getState());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * loads the pending city officials
      */
@@ -159,16 +231,33 @@ public class Database {
     }
 
     /**
-     * loads the pending city officials
+     * loads POI Locations
      */
-    public void acceptDataPoint() {
-        // TODO: 4/7/2017  
-    }
+    public void loadPOILocationsFromDatabase() {
+        System.out.println("POI Locations refreshed");
+        POI.getPois().clear();
+        POI.getPoisNames().clear();
+        try {
+            String query = "SELECT * FROM poi";
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                CityState cityState = new CityState(rs.getString("city"),rs.getString("state"));
+                POI poi = new POI(
+                        rs.getString("location_name"),
+                        rs.getBoolean("flag"),
+                        rs.getString("date_flagged"),
+                        rs.getString("time_flagged"),
+                        rs.getInt("zip_code"),
+                        cityState
+                        );
 
-    /**
-     * loads the pending city officials
-     */
-    public void rejectDataPoint() {
-        // TODO: 4/7/2017  
+                POI.getPois().add(poi);
+                POI.getPoisNames().add(poi.getName());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

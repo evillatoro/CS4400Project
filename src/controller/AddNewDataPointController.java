@@ -8,7 +8,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import model.DataType;
+import model.Datapoint;
 import model.Model;
+import model.POI;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class AddNewDataPointController {
 
@@ -40,9 +45,15 @@ public class AddNewDataPointController {
      */
     @FXML
     public void initialize() {
-        Model.getInstance().loadDataTypes();
+        //Model.getInstance().loadDataTypes();
         dataTypeComboBox.setItems(DataType.getDataTypes());
         dataTypeComboBox.setValue(DataType.getDataTypes().get(0));
+
+        POILocationNameComboBox.setItems(POI.getPoisNames());
+        POILocationNameComboBox.setValue(POI.getPoisNames().get(0));
+
+        resetPickers();
+
     }
 
     /**
@@ -50,6 +61,7 @@ public class AddNewDataPointController {
      */
     @FXML
     private void handleAddNewLocationPressed() {
+        clearFields();
         mainApplication.displayAddNewLocationScene();
     }
 
@@ -67,7 +79,33 @@ public class AddNewDataPointController {
     @FXML
     private void handleSubmitPressed() {
         if (isInputValid()) {
-
+            Datapoint datapoint = new Datapoint(
+                    POILocationNameComboBox.getValue(),
+                    datePickerNewDataPoint.getValue().toString(),
+                    timePickerNewDataPoint.getValue().toString(),
+                    Integer.parseInt(dataValueNewDataPoint.getText()),
+                    dataTypeComboBox.getValue()
+            );
+            // if POI is successfully added, inform user it was successful
+            if (Model.getInstance().addDataPoint(datapoint)) {
+                clearFields();
+                // if the POI fails, notify the user
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.initOwner(mainApplication.getWindow());
+                alert.setTitle("Data Point Added");
+                alert.setHeaderText("Good Data Point Add");
+                alert.setContentText("Data Point was added");
+                alert.showAndWait();
+            } else {
+                // if the POI fails, notify the user
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.initOwner(mainApplication.getWindow());
+                alert.setTitle("Data Point Not Added");
+                alert.setHeaderText("Bad Data Point Add");
+                alert.setContentText("Data Point was not added," +
+                        "check that they are not already in server!");
+                alert.showAndWait();
+            }
         }
 
     }
@@ -83,7 +121,15 @@ public class AddNewDataPointController {
         if ((dataValueNewDataPoint.getText() == null) ||
                 (dataValueNewDataPoint.getText().isEmpty())) {
             errorMessage += "No data value entered!\n";
+        } else {
+            try {
+                Integer.parseInt(dataValueNewDataPoint.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "No valid value entered!\n";
+            }
         }
+
+
         if ((datePickerNewDataPoint.getValue() == null)) {
             errorMessage += "No date is entered!\n";
         }
@@ -106,4 +152,19 @@ public class AddNewDataPointController {
         }
     }
 
+    /**
+     * clears all fields
+     */
+    private void clearFields() {
+        dataValueNewDataPoint.clear();
+        resetPickers();
+    }
+
+    private void resetPickers() {
+        LocalDate dateNow = LocalDate.now();
+        datePickerNewDataPoint.setValue(dateNow);
+
+        LocalTime timeNow = LocalTime.now();
+        timePickerNewDataPoint.setValue(LocalTime.of(timeNow.getHour(),timeNow.getMinute()));
+    }
 }

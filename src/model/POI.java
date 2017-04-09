@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * represents a POI object
  */
@@ -8,8 +11,15 @@ public class POI {
     private String name;
     private Boolean flagged;
     private String dateFlagged;
-    private String zipCode;
+    private String timeFlagged;
+    private int zipCode;
     private CityState cityState;
+
+    /** a list of all the POI Locations*/
+    private static ObservableList<POI> pois = FXCollections.observableArrayList();
+
+    /** a list of all the POI Locations names*/
+    private static ObservableList<String> poisNames = FXCollections.observableArrayList();
 
     /**
      * makes a POI with a name, flagged, date flagged, zip code, CityState object used when loading from database
@@ -19,10 +29,11 @@ public class POI {
      * @param zipCode       POI zip code
      * @param cityState     POI city and state
      */
-    public POI(String name, Boolean flagged, String dateFlagged, String zipCode, CityState cityState) {
+    public POI(String name, Boolean flagged, String dateFlagged, String timeFlagged, int zipCode, CityState cityState) {
         this.name = name;
         this.flagged = flagged;
         this.dateFlagged = dateFlagged;
+        this.timeFlagged = timeFlagged;
         this.zipCode = zipCode;
         this.cityState = cityState;
     }
@@ -31,11 +42,11 @@ public class POI {
      * makes a POI with a name, default not flagged, no date flagged, zip code, CityState object used to
      * store into database
      * @param name          POI name
-     * @param zipCode       POI zip code
      * @param cityState     POI city and state
+     * @param zipCode       POI zip code
      */
-    public POI(String name, String zipCode, CityState cityState) {
-        this(name, false, null, zipCode, cityState);
+    public POI(String name, CityState cityState, int zipCode) {
+        this(name, false, null, null, zipCode, cityState);
     }
 
     public String getName() {
@@ -46,11 +57,11 @@ public class POI {
         this.name = name;
     }
 
-    public Boolean flagged() {
+    public Boolean getFlagged() {
         return flagged;
     }
 
-    private void setFlagged(Boolean flagged) {
+    public void setFlagged(Boolean flagged) {
         this.flagged = flagged;
     }
 
@@ -62,11 +73,19 @@ public class POI {
         this.dateFlagged = dateFlagged;
     }
 
-    public String getZipCode() {
+    public String getTimeFlagged() {
+        return timeFlagged;
+    }
+
+    public void setTimeFlagged(String timeFlagged) {
+        this.timeFlagged = timeFlagged;
+    }
+
+    public int getZipCode() {
         return zipCode;
     }
 
-    private void setZipCode(String zipCode) {
+    private void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -76,5 +95,21 @@ public class POI {
 
     private void setCityState(CityState cityState) {
         this.cityState = cityState;
+    }
+
+    public static ObservableList<POI> getPois() {
+        return pois;
+    }
+
+    public static void setPois(ObservableList<POI> pois) {
+        POI.pois = pois;
+    }
+
+    public static ObservableList<String> getPoisNames() {
+        return poisNames;
+    }
+
+    public static void setPoisNames(ObservableList<String> poisNames) {
+        POI.poisNames = poisNames;
     }
 }

@@ -15,12 +15,16 @@ public final class Model {
 
     private Model() {
         database = new Database();
+        loadCityStates();
+        loadPendingCityOfficials();
+        loadDataTypes();
+        loadPOILocations();
     }
 
     /**
      * add a user to the database
      * @param user the user to add to the database
-     * @return true if user added, user if not added
+     * @return true if user added, false if not added
      */
     public boolean addUser(User user) {
         if (database.addUser(user)) {
@@ -28,6 +32,24 @@ public final class Model {
             return true;
         }
         return false;
+    }
+
+    /**
+     * add a poi to the database
+     * @param poi the poi to add to the database
+     * @return true if poi added, false if not added
+     */
+    public boolean addPOI(POI poi) {
+        return database.addPOIToDatabase(poi);
+    }
+
+    /**
+     * add a datapoint to the database
+     * @param datapoint the datapoint to add to the database
+     * @return true if datapoint added, false if not added
+     */
+    public boolean addDataPoint(Datapoint datapoint) {
+        return database.addDataPointToDatabase(datapoint);
     }
 
     /**
@@ -45,7 +67,15 @@ public final class Model {
         database.loadDataTypesFromDatabase();
     }
 
+    public void loadCityStates() {
+        database.loadCityStatesFromDatabase();
+    }
+
     public void loadPendingCityOfficials() {
         database.loadPendingCityOfficialsFromDatabase();
+    }
+
+    public void loadPOILocations() {
+        database.loadPOILocationsFromDatabase();
     }
 }

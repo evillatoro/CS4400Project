@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import model.CityOfficial;
-import model.Model;
 
 import java.util.ArrayList;
 
@@ -52,10 +51,9 @@ public class PendingCityOfficialAccountsController {
      */
     @FXML
     public void initialize() {
-
+        // //Model.getInstance().loadPendingCityOfficials();
         cityOfficials = new ArrayList<>();
 
-        Model.getInstance().loadPendingCityOfficials();
         usernameCol.setCellValueFactory(
                 new PropertyValueFactory<>("username"));
         emailCol.setCellValueFactory(
@@ -65,7 +63,7 @@ public class PendingCityOfficialAccountsController {
         stateCol.setCellValueFactory(
                 new PropertyValueFactory<>("state"));
         titleCol.setCellValueFactory(
-                new PropertyValueFactory<>("city"));
+                new PropertyValueFactory<>("title"));
         cityOfficialTable.setItems(CityOfficial.getCityOfficials());
 
 
