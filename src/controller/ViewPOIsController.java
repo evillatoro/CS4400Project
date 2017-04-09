@@ -62,7 +62,6 @@ public class ViewPOIsController {
         zipCodeTextField.clear();
         toDatePicker.setValue(null);
         fromDatePicker.setValue(null);
-
     }
 
     /**
