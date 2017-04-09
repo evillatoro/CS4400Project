@@ -13,9 +13,9 @@ public class ViewPOIsController {
     @FXML
     private ChoiceBox poiLocationNameChoiceBox;
     @FXML
-    private ChoiceBox cityChoiceBox;
+    private ChoiceBox<String> cityChoiceBox;
     @FXML
-    private ChoiceBox stateChoiceBox;
+    private ChoiceBox<String> stateChoiceBox;
     @FXML
     private TextField zipCodeTextField;
     @FXML

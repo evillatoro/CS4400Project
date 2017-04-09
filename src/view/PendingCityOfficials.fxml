@@ -15,7 +15,7 @@
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="254.0" layoutY="262.0" mnemonicParsing="false" text="Reject">
+      <Button onAction="#handleRejectPressed" layoutX="254.0" layoutY="262.0" mnemonicParsing="false" text="Reject">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>

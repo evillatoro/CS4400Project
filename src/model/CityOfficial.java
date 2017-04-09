@@ -98,4 +98,9 @@ public class CityOfficial extends User {
     public static void setCityOfficials(ObservableList<CityOfficial> cityOfficials) {
         CityOfficial.cityOfficials = cityOfficials;
     }
+
+    @Override
+    public String toString() {
+        return getUsername();
+    }
 }

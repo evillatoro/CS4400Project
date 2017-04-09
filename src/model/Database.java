@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -71,8 +72,19 @@ public class Database {
     }
 
     private void addCityOfficialToDatabase(CityOfficial cityOfficial) {
-
-
+        try {
+            String query = "INSERT INTO city_official " +
+                    "(username, title, approval, city, state) values (?, ?, ?, ?, ?)";
+            st = con.prepareStatement(query);
+            st.setString(1, cityOfficial.getUsername());
+            st.setString(2, cityOfficial.getTitle());
+            st.setBoolean(3, false);
+            st.setString(4, cityOfficial.getCity());
+            st.setString(5, cityOfficial.getState());
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -258,6 +270,35 @@ public class Database {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void acceptCityOfficialAccountsIntoDatabase(ArrayList<CityOfficial> cityOfficials) {
+        System.out.println("City Officials Accepted into Database");
+        for (int i = 0; i < cityOfficials.size(); i++) {
+            try {
+                String query = "UPDATE city_official SET approval = ? where username = ?";
+                st = con.prepareStatement(query);
+                st.setBoolean(1, true);
+                st.setString(2, cityOfficials.get(i).getUsername());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void rejectCityOfficialAccountsIntoDatabase(ArrayList<CityOfficial> cityOfficials) {
+        System.out.println("City Officials Deleted from Database");
+        for (int i = 0; i < cityOfficials.size(); i++) {
+            try {
+                String query = "DELETE FROM user where username = ?";
+                st = con.prepareStatement(query);
+                st.setString(1, cityOfficials.get(i).getUsername());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

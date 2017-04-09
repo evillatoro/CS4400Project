@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public final class Model {
 
     private static final Model instance = new Model();
@@ -77,5 +79,13 @@ public final class Model {
 
     public void loadPOILocations() {
         database.loadPOILocationsFromDatabase();
+    }
+
+    public void acceptCityOfficialAccounts(ArrayList<CityOfficial> cityOfficials) {
+        database.acceptCityOfficialAccountsIntoDatabase(cityOfficials);
+    }
+
+    public void rejectCityOfficialAccounts(ArrayList<CityOfficial> cityOfficials) {
+        database.rejectCityOfficialAccountsIntoDatabase(cityOfficials);
     }
 }

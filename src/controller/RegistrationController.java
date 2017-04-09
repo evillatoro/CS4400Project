@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import model.CityOfficial;
 import model.CityState;
 import model.Model;
 import model.User;
@@ -87,14 +88,30 @@ public class RegistrationController {
      */
     public void handleCreatePressed() {
         if (isInputValid()) {
-            User user = new User(
-                    usernameField.getText(),
-                    passwordField.getText(),
-                    emailField.getText(),
-                    userTypeComboBox.getSelectionModel().getSelectedItem());
+            User user;
+            if (userTypeComboBox.getValue().equals("city official")) {
+                CityState cityState = new CityState(cityComboBox.getValue(), stateComboBox.getValue());
+                user = new CityOfficial(
+                        usernameField.getText(),
+                        passwordField.getText(),
+                        emailField.getText(),
+                        titleField.getText(),
+                        cityState);
+            } else {
+                user = new User(
+                        usernameField.getText(),
+                        passwordField.getText(),
+                        emailField.getText(),
+                        userTypeComboBox.getSelectionModel().getSelectedItem());
+            }
             // if user is successfully added, take that user to the appropriate screen
             if (Model.getInstance().addUser(user)) {
                 clearFields();
+                if (userTypeComboBox.getValue().equals("city official")) {
+                    mainApplication.displayFunctionalityCityOfficialScene();
+                } else {
+                    mainApplication.displayFunctionalityCityScientistScene();
+                }
             } else {
                 // if the add fails, notify the user
                 Alert alert = new Alert(Alert.AlertType.ERROR);
