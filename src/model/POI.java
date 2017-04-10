@@ -1,5 +1,8 @@
 package model;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -8,11 +11,12 @@ import javafx.collections.ObservableList;
  */
 public class POI {
 
-    private String name;
-    private Boolean flagged;
-    private String dateFlagged;
-    private String timeFlagged;
-    private int zipCode;
+    private final SimpleStringProperty name;
+    private final SimpleBooleanProperty flagged;
+    private final SimpleStringProperty dateFlagged;
+    private final SimpleIntegerProperty zipCode;
+    private final SimpleStringProperty city;
+    private final SimpleStringProperty state;
     private CityState cityState;
 
     /** a list of all the POI Locations*/
@@ -29,13 +33,15 @@ public class POI {
      * @param zipCode       POI zip code
      * @param cityState     POI city and state
      */
-    public POI(String name, Boolean flagged, String dateFlagged, String timeFlagged, int zipCode, CityState cityState) {
-        this.name = name;
-        this.flagged = flagged;
-        this.dateFlagged = dateFlagged;
-        this.timeFlagged = timeFlagged;
-        this.zipCode = zipCode;
+    public POI(String name, Boolean flagged, String dateFlagged, int zipCode, CityState cityState) {
+        this.name = new SimpleStringProperty(name);
+        this.flagged = new SimpleBooleanProperty(flagged);
+        this.dateFlagged = new SimpleStringProperty(dateFlagged);
+        //this.timeFlagged = timeFlagged;
+        this.zipCode = new SimpleIntegerProperty(zipCode);
         this.cityState = cityState;
+        this.city = new SimpleStringProperty(cityState.getCity());
+        this.state = new SimpleStringProperty(cityState.getState());
     }
 
     /**
@@ -46,47 +52,39 @@ public class POI {
      * @param zipCode       POI zip code
      */
     public POI(String name, CityState cityState, int zipCode) {
-        this(name, false, null, null, zipCode, cityState);
+        this(name, false, null, zipCode, cityState);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     private void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public Boolean getFlagged() {
-        return flagged;
+        return flagged.get();
     }
 
     public void setFlagged(Boolean flagged) {
-        this.flagged = flagged;
+        this.flagged.setValue(flagged);
     }
 
     public String getDateFlagged() {
-        return dateFlagged;
+        return dateFlagged.get();
     }
 
     private void setDateFlagged(String dateFlagged) {
-        this.dateFlagged = dateFlagged;
-    }
-
-    public String getTimeFlagged() {
-        return timeFlagged;
-    }
-
-    public void setTimeFlagged(String timeFlagged) {
-        this.timeFlagged = timeFlagged;
+        this.dateFlagged.set(dateFlagged);
     }
 
     public int getZipCode() {
-        return zipCode;
+        return zipCode.get();
     }
 
     private void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+        this.zipCode.set(zipCode);
     }
 
     public CityState getCityState() {
@@ -95,6 +93,30 @@ public class POI {
 
     private void setCityState(CityState cityState) {
         this.cityState = cityState;
+    }
+
+    public String getCity() {
+        return city.get();
+    }
+
+    public SimpleStringProperty cityProperty() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city.set(city);
+    }
+
+    public String getState() {
+        return state.get();
+    }
+
+    public SimpleStringProperty stateProperty() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state.set(state);
     }
 
     public static ObservableList<POI> getPois() {

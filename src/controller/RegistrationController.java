@@ -215,6 +215,7 @@ public class RegistrationController {
         emailField.clear();
         passwordField.clear();
         confirmPasswordField.clear();
+        titleField.clear();
     }
 
     /**

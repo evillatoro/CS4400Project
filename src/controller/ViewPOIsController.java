@@ -6,8 +6,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.DataType;
+import model.POI;
+
+import java.util.ArrayList;
 
 public class ViewPOIsController {
     @FXML
@@ -24,6 +30,22 @@ public class ViewPOIsController {
     private DatePicker toDatePicker;
     @FXML
     private DatePicker fromDatePicker;
+    @FXML
+    private TableView poiLocationTable;
+    @FXML
+    private TableColumn locationNameCol;
+    @FXML
+    private TableColumn cityCol;
+    @FXML
+    private TableColumn stateCol;
+    @FXML
+    private TableColumn zipCodeCol;
+    @FXML
+    private TableColumn flaggedCol;
+    @FXML
+    private TableColumn dateFlaggedCol;
+
+    ArrayList<POI> poiLocations;
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
@@ -36,12 +58,29 @@ public class ViewPOIsController {
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
     }
+
     /**
      * sets the choice box with data type
      */
     @FXML
     private void initialize() {
         //Model.getInstance().loadDataTypes();
+        poiLocations = new ArrayList<>();
+
+        locationNameCol.setCellValueFactory(
+                new PropertyValueFactory<>("name"));
+        cityCol.setCellValueFactory(
+                new PropertyValueFactory<>("city"));
+        stateCol.setCellValueFactory(
+                new PropertyValueFactory<>("state"));
+        zipCodeCol.setCellValueFactory(
+                new PropertyValueFactory<>("zipCode"));
+        flaggedCol.setCellValueFactory(
+                new PropertyValueFactory<>("flagged"));
+        dateFlaggedCol.setCellValueFactory(
+                new PropertyValueFactory<>("dateFlagged"));
+        poiLocationTable.setItems(POI.getPois());
+
         cityChoiceBox.setItems(DataType.getDataTypes());
         stateChoiceBox.setValue(DataType.getDataTypes().get(0));
     }

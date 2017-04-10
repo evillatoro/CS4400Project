@@ -95,15 +95,14 @@ public class Database {
     public boolean addPOIToDatabase(POI poi) {
         try {
             String query = "INSERT INTO poi " +
-                    "(location_name, flag, date_flagged, time_flagged, zip_code, city, state) values (?, ?, ?, ?, ?, ?, ?)";
+                    "(location_name, flag, date_flagged, zip_code, city, state) values (?, ?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, poi.getName());
             st.setBoolean(2, poi.getFlagged());
             st.setString(3, poi.getDateFlagged());
-            st.setString(4, poi.getTimeFlagged());
-            st.setInt(5, poi.getZipCode());
-            st.setString(6, poi.getCityState().getCity());
-            st.setString(7, poi.getCityState().getState());
+            st.setInt(4, poi.getZipCode());
+            st.setString(5, poi.getCityState().getCity());
+            st.setString(6, poi.getCityState().getState());
             st.execute();
             return true;
 
@@ -259,7 +258,6 @@ public class Database {
                         rs.getString("location_name"),
                         rs.getBoolean("flag"),
                         rs.getString("date_flagged"),
-                        rs.getString("time_flagged"),
                         rs.getInt("zip_code"),
                         cityState
                         );

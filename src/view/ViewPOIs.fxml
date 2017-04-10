@@ -36,14 +36,14 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="71.0" layoutY="400.0" prefHeight="111.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 2;">
+      <TableView fx:id="poiLocationTable" layoutX="71.0" layoutY="400.0" prefHeight="111.0" prefWidth="421.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
-          <TableColumn editable="false" prefWidth="99.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Location Name" />
-          <TableColumn editable="false" prefWidth="82.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
-            <TableColumn editable="false" prefWidth="39.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
-            <TableColumn editable="false" prefWidth="56.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Zip Code" />
-            <TableColumn editable="false" prefWidth="56.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />
-            <TableColumn editable="false" prefWidth="86.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date Flagged" />
+          <TableColumn fx:id="locationNameCol" editable="false" prefWidth="99.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Location Name" />
+          <TableColumn fx:id="cityCol" editable="false" prefWidth="82.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
+            <TableColumn fx:id="stateCol" editable="false" prefWidth="39.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
+            <TableColumn fx:id="zipCodeCol" editable="false" prefWidth="56.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Zip Code" />
+            <TableColumn fx:id="flaggedCol" editable="false" prefWidth="56.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />
+            <TableColumn fx:id="dateFlaggedCol" editable="false" prefWidth="86.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date Flagged" />
         </columns>
       </TableView>
       <Line endX="400.0" layoutX="135.0" layoutY="377.0" startX="-100.0" strokeWidth="1.25" />
