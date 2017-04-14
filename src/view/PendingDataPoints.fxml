@@ -8,37 +8,38 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="565.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PendingDataPointsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="565.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PendingDataPointsController">
    <children>
       <Label layoutX="195.0" layoutY="26.0" text="Pending Data Points" textFill="#c99e03">
          <font>
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="253.0" layoutY="262.0" mnemonicParsing="false" text="Reject">
+      <Button layoutX="253.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleRejectPressed" text="Reject">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
       <Line endX="462.0" layoutX="101.0" layoutY="20.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="462.0" layoutX="102.0" layoutY="313.0" startX="-100.0" strokeWidth="2.0" />
-      <Button onAction="#handleBackPressed" layoutX="84.0" layoutY="262.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="84.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="431.0" layoutY="262.0" mnemonicParsing="false" text="Accept">
+      <Button layoutX="431.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleAcceptPressed" text="Accept">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="18.0" layoutY="58.0" prefHeight="191.0" prefWidth="528.0" style="-fx-border-color: black; -fx-border-width: 2;">
+      <TableView fx:id="dataPointTable" layoutX="18.0" layoutY="58.0" prefHeight="191.0" prefWidth="528.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
-          <TableColumn prefWidth="52.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Select" />
-          <TableColumn editable="false" prefWidth="130.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="POI Location" />
-            <TableColumn editable="false" prefWidth="84.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
-            <TableColumn editable="false" prefWidth="79.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
-            <TableColumn editable="false" prefWidth="182.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time &amp; Date of Data Reading" />
+          <TableColumn fx:id="selectCol" prefWidth="52.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Select" />
+          <TableColumn fx:id="locationCol" editable="false" prefWidth="130.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="POI Location" />
+            <TableColumn fx:id="dataTypeCol" editable="false" prefWidth="84.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
+            <TableColumn fx:id="dataValueCol" editable="false" prefWidth="79.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="90.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time of Reading" />
+            <TableColumn fx:id="dateCol" editable="false" prefWidth="90.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date of Reading" />
         </columns>
       </TableView>
    </children>

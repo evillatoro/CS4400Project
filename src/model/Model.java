@@ -21,6 +21,7 @@ public final class Model {
         loadPendingCityOfficials();
         loadDataTypes();
         loadPOILocations();
+        loadPendingDataPoints();
     }
 
     /**
@@ -77,6 +78,10 @@ public final class Model {
         database.loadPendingCityOfficialsFromDatabase();
     }
 
+    public void loadPendingDataPoints() {
+        database.loadPendingDataPointsFromDatabase();
+    }
+
     public void loadPOILocations() {
         database.loadPOILocationsFromDatabase();
     }
@@ -87,5 +92,13 @@ public final class Model {
 
     public void rejectCityOfficialAccounts(ArrayList<CityOfficial> cityOfficials) {
         database.rejectCityOfficialAccountsIntoDatabase(cityOfficials);
+    }
+
+    public void acceptDataPoints(ArrayList<Datapoint> dataPoints) {
+        database.acceptDataPointIntoDatabase(dataPoints);
+    }
+
+    public void rejectDataPoints(ArrayList<Datapoint> dataPoints) {
+        database.rejectDataPointIntoDatabase(dataPoints);
     }
 }

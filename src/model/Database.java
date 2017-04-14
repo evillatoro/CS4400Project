@@ -244,6 +244,32 @@ public class Database {
     }
 
     /**
+     * loads the pending data points
+     */
+    public void loadPendingDataPointsFromDatabase() {
+        System.out.println("Data Points refreshed");
+        Datapoint.getDataPoints().clear();
+        try {
+            String query = "SELECT * FROM data_point WHERE NOT data_point.accepted";
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                Datapoint point = new Datapoint(
+                        rs.getString("poi_name"),
+                        rs.getString("date_of_reading"),
+                        rs.getString("time_of_reading"),
+                        rs.getInt("data_value"),
+                        rs.getString("data_type")
+                );
+                Datapoint.getDataPoints().add(point);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * loads POI Locations
      */
     public void loadPOILocationsFromDatabase() {
@@ -311,6 +337,41 @@ public class Database {
                 String query = "DELETE FROM user where username = ?";
                 st = con.prepareStatement(query);
                 st.setString(1, cityOfficials.get(i).getUsername());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void acceptDataPointIntoDatabase(ArrayList<Datapoint> dataPoints) {
+        System.out.println("Data Point Accepted into Database");
+        for (int i = 0; i < dataPoints.size(); i++) {
+            try {
+                String query = "UPDATE data_point SET approval = ? where poi_name = ? AND date_of_reading = ? " +
+                        "AND time_of_reading = ?";
+                st = con.prepareStatement(query);
+                st.setBoolean(1, true);
+                st.setString(2, dataPoints.get(i).getLocationName());
+                st.setString(3, dataPoints.get(i).getDate());
+                st.setString(4, dataPoints.get(i).getTime());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void rejectDataPointIntoDatabase(ArrayList<Datapoint> dataPoints) {
+        System.out.println("Data Point Deleted from Database");
+        for (int i = 0; i < dataPoints.size(); i++) {
+            try {
+                String query = "DELETE FROM data_point where poi_name = ? AND date_of_reading = ? " +
+                        "AND time_of_reading = ?";
+                st = con.prepareStatement(query);
+                st.setString(1, dataPoints.get(i).getLocationName());
+                st.setString(2, dataPoints.get(i).getDate());
+                st.setString(3, dataPoints.get(i).getTime());
                 st.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

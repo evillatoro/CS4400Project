@@ -1,5 +1,6 @@
 package model;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,8 +14,8 @@ public class Datapoint {
     private final SimpleStringProperty date;
     private final SimpleStringProperty time;
 
-    private int dataValue;
-    private String dataType;
+    private final SimpleIntegerProperty dataValue;
+    private SimpleStringProperty dataType;
     private Boolean accepted;
 
     /** a list of all the datapoints*/
@@ -34,8 +35,8 @@ public class Datapoint {
         this.locationName = new SimpleStringProperty(locationName);
         this.date = new SimpleStringProperty(date);
         this.time = new SimpleStringProperty(time);
-        this.dataValue = dataValue;
-        this.dataType = dataType;
+        this.dataValue = new SimpleIntegerProperty(dataValue);
+        this.dataType = new SimpleStringProperty(dataType);
         this.accepted = accepted;
     }
 
@@ -77,19 +78,19 @@ public class Datapoint {
     }
 
     public int getDataValue() {
-        return dataValue;
+        return dataValue.get();
     }
 
     private void setDataValue(int dataValue) {
-        this.dataValue = dataValue;
+        this.dataValue.set(dataValue);
     }
 
     public String getDataType() {
-        return dataType;
+        return dataType.get();
     }
 
     private void setDataType(String dataType) {
-        this.dataType = dataType;
+        this.dataType.set(dataType);
     }
 
     public Boolean getAccepted() {
@@ -100,7 +101,16 @@ public class Datapoint {
         this.accepted = accepted;
     }
 
+    public static ObservableList<Datapoint> getDataPoints() {
+        return dataPoints;
+    }
+
     public static void setDataPoints(ObservableList<Datapoint> dataPoints) {
         Datapoint.dataPoints = dataPoints;
+    }
+
+    @Override
+    public String toString() {
+        return getLocationName() + " " + getDate() + " " + getTime();
     }
 }
