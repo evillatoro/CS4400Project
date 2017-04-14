@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,19 +12,32 @@ import javafx.collections.ObservableList;
  */
 public class POI {
 
-    private final SimpleStringProperty name;
-    private final SimpleBooleanProperty flagged;
-    private final SimpleStringProperty dateFlagged;
-    private final SimpleIntegerProperty zipCode;
-    private final SimpleStringProperty city;
-    private final SimpleStringProperty state;
+    private SimpleStringProperty name;
+    private SimpleBooleanProperty flagged;
+    private SimpleStringProperty dateFlagged;
+    private SimpleIntegerProperty zipCode;
+    private SimpleStringProperty city;
+    private SimpleStringProperty state;
     private CityState cityState;
+
+    private SimpleIntegerProperty numberOfReports;
+    private SimpleDoubleProperty moldMin;
+    private SimpleDoubleProperty moldAvg;
+    private SimpleDoubleProperty moldMax;
+
+    private SimpleDoubleProperty aqMin;
+    private SimpleDoubleProperty aqAvg;
+    private SimpleDoubleProperty aqMax;
+
 
     /** a list of all the POI Locations*/
     private static ObservableList<POI> pois = FXCollections.observableArrayList();
 
     /** a list of all the POI Locations names*/
     private static ObservableList<String> poisNames = FXCollections.observableArrayList();
+
+    /** a list of all the POI Locations for report screen*/
+    private static ObservableList<String> poisForReport = FXCollections.observableArrayList();
 
     /**
      * makes a POI with a name, flagged, date flagged, zip code, CityState object used when loading from database
@@ -37,7 +51,6 @@ public class POI {
         this.name = new SimpleStringProperty(name);
         this.flagged = new SimpleBooleanProperty(flagged);
         this.dateFlagged = new SimpleStringProperty(dateFlagged);
-        //this.timeFlagged = timeFlagged;
         this.zipCode = new SimpleIntegerProperty(zipCode);
         this.cityState = cityState;
         this.city = new SimpleStringProperty(cityState.getCity());
@@ -55,11 +68,42 @@ public class POI {
         this(name, false, null, zipCode, cityState);
     }
 
+    public POI() {
+
+    }
+
+    /**
+     * used when generating POI Report
+     * @param name
+     * @param city
+     * @param state
+     * @param moldMin
+     * @param moldAvg
+     * @param moldMax
+     * @param numberOfReports
+     * @param flagged
+     */
+    public POI(String name, String city, String state, int zipCode, String dateFlagged, Boolean flagged, Double moldMin, Double moldAvg, Double moldMax, Double aqMin, Double aqAvg, Double aqMax, int numberOfReports) {
+        this.name = new SimpleStringProperty(name);
+        this.city = new SimpleStringProperty(city);
+        this.state = new SimpleStringProperty(state);
+        this.zipCode = new SimpleIntegerProperty(zipCode);
+        this.dateFlagged = new SimpleStringProperty(dateFlagged);
+        this.moldMin = new SimpleDoubleProperty(moldMin);
+        this.moldAvg = new SimpleDoubleProperty(moldAvg);
+        this.moldMax = new SimpleDoubleProperty(moldMax);
+        this.aqMin = new SimpleDoubleProperty(aqMin);
+        this.aqAvg = new SimpleDoubleProperty(aqAvg);
+        this.aqMax = new SimpleDoubleProperty(aqMax);
+        this.numberOfReports = new SimpleIntegerProperty(numberOfReports);
+        this.flagged = new SimpleBooleanProperty(flagged);
+    }
+
     public String getName() {
         return name.get();
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name.set(name);
     }
 
@@ -75,7 +119,7 @@ public class POI {
         return dateFlagged.get();
     }
 
-    private void setDateFlagged(String dateFlagged) {
+    public void setDateFlagged(String dateFlagged) {
         this.dateFlagged.set(dateFlagged);
     }
 
@@ -83,7 +127,7 @@ public class POI {
         return zipCode.get();
     }
 
-    private void setZipCode(int zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode.set(zipCode);
     }
 
@@ -91,7 +135,7 @@ public class POI {
         return cityState;
     }
 
-    private void setCityState(CityState cityState) {
+    public void setCityState(CityState cityState) {
         this.cityState = cityState;
     }
 
@@ -119,6 +163,114 @@ public class POI {
         this.state.set(state);
     }
 
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
+    public boolean isFlagged() {
+        return flagged.get();
+    }
+
+    public SimpleBooleanProperty flaggedProperty() {
+        return flagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        this.flagged.set(flagged);
+    }
+
+    public SimpleStringProperty dateFlaggedProperty() {
+        return dateFlagged;
+    }
+
+    public SimpleIntegerProperty zipCodeProperty() {
+        return zipCode;
+    }
+
+    public int getNumberOfReports() {
+        return numberOfReports.get();
+    }
+
+    public SimpleIntegerProperty numberOfReportsProperty() {
+        return numberOfReports;
+    }
+
+    public void setNumberOfReports(int numberOfReports) {
+        this.numberOfReports.set(numberOfReports);
+    }
+
+    public double getMoldMin() {
+        return moldMin.get();
+    }
+
+    public SimpleDoubleProperty moldMinProperty() {
+        return moldMin;
+    }
+
+    public void setMoldMin(double moldMin) {
+        this.moldMin.set(moldMin);
+    }
+
+    public double getMoldAvg() {
+        return moldAvg.get();
+    }
+
+    public SimpleDoubleProperty moldAvgProperty() {
+        return moldAvg;
+    }
+
+    public void setMoldAvg(double moldAvg) {
+        this.moldAvg.set(moldAvg);
+    }
+
+    public double getMoldMax() {
+        return moldMax.get();
+    }
+
+    public SimpleDoubleProperty moldMaxProperty() {
+        return moldMax;
+    }
+
+    public void setMoldMax(double moldMax) {
+        this.moldMax.set(moldMax);
+    }
+
+    public double getAqMin() {
+        return aqMin.get();
+    }
+
+    public SimpleDoubleProperty aqMinProperty() {
+        return aqMin;
+    }
+
+    public void setAqMin(double aqMin) {
+        this.aqMin.set(aqMin);
+    }
+
+    public double getAqAvg() {
+        return aqAvg.get();
+    }
+
+    public SimpleDoubleProperty aqAvgProperty() {
+        return aqAvg;
+    }
+
+    public void setAqAvg(double aqAvg) {
+        this.aqAvg.set(aqAvg);
+    }
+
+    public double getAqMax() {
+        return aqMax.get();
+    }
+
+    public SimpleDoubleProperty aqMaxProperty() {
+        return aqMax;
+    }
+
+    public void setAqMax(double aqMax) {
+        this.aqMax.set(aqMax);
+    }
+
     public static ObservableList<POI> getPois() {
         return pois;
     }
@@ -134,4 +286,13 @@ public class POI {
     public static void setPoisNames(ObservableList<String> poisNames) {
         POI.poisNames = poisNames;
     }
+
+    public static ObservableList<String> getPoisForReport() {
+        return poisForReport;
+    }
+
+    public static void setPoisForReport(ObservableList<String> poisForReport) {
+        POI.poisForReport = poisForReport;
+    }
+
 }

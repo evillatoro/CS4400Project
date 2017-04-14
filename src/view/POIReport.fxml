@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="757.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.POIReportController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="757.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.POIReportController">
    <children>
       <Label layoutX="331.0" layoutY="24.0" text="POI Report" textFill="#c99e03">
          <font>
@@ -17,7 +17,7 @@
       </Label>
       <Line endX="655.0" layoutX="101.0" layoutY="20.0" startX="-100.0" strokeWidth="2.0" />
       <Line endX="651.0" layoutX="102.0" layoutY="319.0" startX="-100.0" strokeWidth="2.0" />
-      <Button onAction="#handleBackPressed" layoutX="353.0" layoutY="269.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="353.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -31,6 +31,7 @@
             <TableColumn fx:id="moldAvgCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Avg" />
             <TableColumn fx:id="moldMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Max" />
             <TableColumn fx:id="aqMinCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Min" />
+            <TableColumn fx:id="aqAvgCol" editable="false" prefWidth="71.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Avg" />
             <TableColumn fx:id="aqMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Max" />
             <TableColumn fx:id="countCol" editable="false" prefWidth="79.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="# Data Points" />
             <TableColumn fx:id="flaggedCol" editable="false" prefWidth="75.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />

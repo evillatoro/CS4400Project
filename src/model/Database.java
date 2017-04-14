@@ -104,6 +104,8 @@ public class Database {
             st.setString(5, poi.getCityState().getCity());
             st.setString(6, poi.getCityState().getState());
             st.execute();
+            POI.getPois().add(poi);
+            POI.getPoisNames().add(poi.getName());
             return true;
 
         } catch (SQLException e) {
@@ -249,17 +251,33 @@ public class Database {
         POI.getPois().clear();
         POI.getPoisNames().clear();
         try {
-            String query = "SELECT * FROM poi";
+            System.out.println("loading");
+            String query = "SELECT location_name as ln, city, state, zip_code, date_flagged, flag,\n" +
+                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_min,\n" +
+                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_avg,\n" +
+                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_max,\n" +
+                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_min,\n" +
+                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_avg,\n" +
+                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_max,\n" +
+                    "(SELECT COUNT(*) FROM data_point as dp WHERE ln = dp.poi_name) count FROM poi";
             st = con.prepareStatement(query);
             rs = st.executeQuery();
             while(rs.next()) {
                 CityState cityState = new CityState(rs.getString("city"),rs.getString("state"));
                 POI poi = new POI(
-                        rs.getString("location_name"),
-                        rs.getBoolean("flag"),
-                        rs.getString("date_flagged"),
+                        rs.getString("ln"),
+                        rs.getString("city"),
+                        rs.getString("state"),
                         rs.getInt("zip_code"),
-                        cityState
+                        rs.getString("date_flagged"),
+                        rs.getBoolean("flag"),
+                        rs.getDouble("mold_min"),
+                        rs.getDouble("mold_avg"),
+                        rs.getDouble("mold_max"),
+                        rs.getDouble("aq_min"),
+                        rs.getDouble("aq_avg"),
+                        rs.getDouble("aq_max"),
+                        rs.getInt("count")
                         );
 
                 POI.getPois().add(poi);

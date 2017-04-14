@@ -54,7 +54,6 @@ public class PendingCityOfficialAccountsController {
      */
     @FXML
     public void initialize() {
-        // //Model.getInstance().loadPendingCityOfficials();
         cityOfficials = new ArrayList<>();
 
         usernameCol.setCellValueFactory(

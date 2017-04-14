@@ -10,7 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.DataType;
+import model.CityState;
 import model.POI;
 
 import java.util.ArrayList;
@@ -80,18 +80,21 @@ public class ViewPOIsController {
         dateFlaggedCol.setCellValueFactory(
                 new PropertyValueFactory<>("dateFlagged"));
         poiLocationTable.setItems(POI.getPois());
+        poiLocationNameChoiceBox.setItems(POI.getPoisNames());
 
-        cityChoiceBox.setItems(DataType.getDataTypes());
-        stateChoiceBox.setValue(DataType.getDataTypes().get(0));
+        cityChoiceBox.setItems(CityState.getCities());
+        stateChoiceBox.setItems(CityState.getStates());
+
+        poiLocationTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            mainApplication.displayPOIDetailScene();
+        });
     }
     /**
      * called when user presses apply filter button
      */
-   @FXML
+    @FXML
     private void handleApplyFilterPressed() {
-        if (isInputValid()) {
 
-        }
     }
     /**
      * called when user presses reset filter button
@@ -101,6 +104,9 @@ public class ViewPOIsController {
         zipCodeTextField.clear();
         toDatePicker.setValue(null);
         fromDatePicker.setValue(null);
+        poiLocationNameChoiceBox.setValue(null);
+        cityChoiceBox.setValue(null);
+        stateChoiceBox.setValue(null);
     }
 
     /**
