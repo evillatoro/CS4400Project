@@ -348,7 +348,7 @@ public class Database {
         System.out.println("Data Point Accepted into Database");
         for (int i = 0; i < dataPoints.size(); i++) {
             try {
-                String query = "UPDATE data_point SET approval = ? where poi_name = ? AND date_of_reading = ? " +
+                String query = "UPDATE data_point SET accepted = ? where poi_name = ? AND date_of_reading = ? " +
                         "AND time_of_reading = ?";
                 st = con.prepareStatement(query);
                 st.setBoolean(1, true);

@@ -38,8 +38,8 @@
           <TableColumn fx:id="locationCol" editable="false" prefWidth="130.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="POI Location" />
             <TableColumn fx:id="dataTypeCol" editable="false" prefWidth="84.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
             <TableColumn fx:id="dataValueCol" editable="false" prefWidth="79.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
-            <TableColumn fx:id="timeCol" editable="false" prefWidth="90.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time of Reading" />
-            <TableColumn fx:id="dateCol" editable="false" prefWidth="90.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date of Reading" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="82.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time of Reading" />
+            <TableColumn fx:id="dateCol" editable="false" prefWidth="82.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date of Reading" />
         </columns>
       </TableView>
    </children>
