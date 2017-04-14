@@ -22,18 +22,18 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="16.0" layoutY="58.0" prefHeight="196.0" prefWidth="729.0" style="-fx-border-color: black; -fx-border-width: 2;">
+      <TableView fx:id="poiTable" layoutX="16.0" layoutY="58.0" prefHeight="196.0" prefWidth="729.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
-          <TableColumn editable="false" prefWidth="110.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="POI Location" />
-            <TableColumn editable="false" prefWidth="73.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
-            <TableColumn editable="false" prefWidth="71.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
-            <TableColumn editable="false" prefWidth="66.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Min" />
-            <TableColumn editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Avg" />
-            <TableColumn editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Max" />
-            <TableColumn editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Min" />
-            <TableColumn editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Max" />
-            <TableColumn editable="false" prefWidth="79.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="# Data Points" />
-            <TableColumn editable="false" prefWidth="75.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />
+          <TableColumn fx:id="nameCol" editable="false" prefWidth="110.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="POI Location" />
+            <TableColumn fx:id="cityCol" editable="false" prefWidth="73.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="City" />
+            <TableColumn fx:id="stateCol" editable="false" prefWidth="71.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="State" />
+            <TableColumn fx:id="moldMinCol" editable="false" prefWidth="66.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Min" />
+            <TableColumn fx:id="moldAvgCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Avg" />
+            <TableColumn fx:id="moldMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Max" />
+            <TableColumn fx:id="aqMinCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Min" />
+            <TableColumn fx:id="aqMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Max" />
+            <TableColumn fx:id="countCol" editable="false" prefWidth="79.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="# Data Points" />
+            <TableColumn fx:id="flaggedCol" editable="false" prefWidth="75.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />
         </columns>
       </TableView>
    </children>
