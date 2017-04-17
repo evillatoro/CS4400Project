@@ -6,9 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * represents a Datapoint object
+ * represents a DataPoint object
  */
-public class Datapoint {
+public class DataPoint {
 
     private final SimpleStringProperty locationName;
     private final SimpleStringProperty date;
@@ -19,19 +19,19 @@ public class Datapoint {
     private Boolean accepted;
 
     /** a list of all the datapoints*/
-    private static ObservableList<Datapoint> dataPoints = FXCollections.observableArrayList();
+    private static ObservableList<DataPoint> pendingDataPoints = FXCollections.observableArrayList();
 
     /**
-     * makes a Datapoint with a location name, date, time, data value, data type, and approved status
+     * makes a DataPoint with a location name, date, time, data value, data type, and approved status
      * used when loading from database
-     * @param locationName  Datapoint location name
-     * @param date          Datapoint date
-     * @param time          Datapoint time
-     * @param dataValue     Datapoint data value
-     * @param dataType      Datapoint data type
-     * @param accepted      Datapoint accepted
+     * @param locationName  DataPoint location name
+     * @param date          DataPoint date
+     * @param time          DataPoint time
+     * @param dataValue     DataPoint data value
+     * @param dataType      DataPoint data type
+     * @param accepted      DataPoint accepted
      */
-    public Datapoint(String locationName, String date, String time, int dataValue, String dataType, Boolean accepted) {
+    public DataPoint(String locationName, String date, String time, int dataValue, String dataType, Boolean accepted) {
         this.locationName = new SimpleStringProperty(locationName);
         this.date = new SimpleStringProperty(date);
         this.time = new SimpleStringProperty(time);
@@ -41,16 +41,16 @@ public class Datapoint {
     }
 
     /**
-     * makes a Datapoint with a location name, date, time, data value, data type, and default approved false
+     * makes a DataPoint with a location name, date, time, data value, data type, and default approved false
      * used to store into database
-     * @param locationName  Datapoint location name
-     * @param date          Datapoint date
-     * @param time          Datapoint time
-     * @param dataValue     Datapoint data value
-     * @param dataType      Datapoint data type
+     * @param locationName  DataPoint location name
+     * @param date          DataPoint date
+     * @param time          DataPoint time
+     * @param dataValue     DataPoint data value
+     * @param dataType      DataPoint data type
      */
-    public Datapoint(String locationName, String date, String time, int dataValue, String dataType) {
-        this(locationName, date, time, dataValue, dataType, false);
+    public DataPoint(String locationName, String date, String time, int dataValue, String dataType) {
+        this(locationName, date, time, dataValue, dataType, null);
     }
 
     public String getLocationName() {
@@ -101,12 +101,12 @@ public class Datapoint {
         this.accepted = accepted;
     }
 
-    public static ObservableList<Datapoint> getDataPoints() {
-        return dataPoints;
+    public static ObservableList<DataPoint> getPendingDataPoints() {
+        return pendingDataPoints;
     }
 
-    public static void setDataPoints(ObservableList<Datapoint> dataPoints) {
-        Datapoint.dataPoints = dataPoints;
+    public static void setPendingDataPoints(ObservableList<DataPoint> pendingDataPoints) {
+        DataPoint.pendingDataPoints = pendingDataPoints;
     }
 
     @Override

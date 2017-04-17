@@ -18,7 +18,7 @@ public class FunctionalityAdminController {
     }
 
     /**
-     * called when the user clicks logout
+     * called when the user clicks pending data points
      */
     @FXML
     private void handlePendingDataPointsPressed() {
@@ -26,7 +26,7 @@ public class FunctionalityAdminController {
     }
 
     /**
-     * called when the user clicks logout
+     * called when the user clicks pending city official accounts
      */
     @FXML
     private void handlePendingCityOfficialAccountsPressed() {

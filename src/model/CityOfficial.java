@@ -18,7 +18,7 @@ public class CityOfficial extends User {
     private CityState cityState;
 
     /** a list of all the city officials*/
-    private static ObservableList<CityOfficial> cityOfficials = FXCollections.observableArrayList();
+    private static ObservableList<CityOfficial> pendingCityOfficials = FXCollections.observableArrayList();
 
     /**
      * makes a City Official with a username, password, email, title, CityState object, and default approved false
@@ -91,12 +91,12 @@ public class CityOfficial extends User {
         this.approved = approved;
     }
 
-    public static ObservableList<CityOfficial> getCityOfficials() {
-        return cityOfficials;
+    public static ObservableList<CityOfficial> getPendingCityOfficials() {
+        return pendingCityOfficials;
     }
 
-    public static void setCityOfficials(ObservableList<CityOfficial> cityOfficials) {
-        CityOfficial.cityOfficials = cityOfficials;
+    public static void setPendingCityOfficials(ObservableList<CityOfficial> pendingCityOfficials) {
+        CityOfficial.pendingCityOfficials = pendingCityOfficials;
     }
 
     @Override

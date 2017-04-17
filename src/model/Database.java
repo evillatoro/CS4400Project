@@ -66,6 +66,7 @@ public class Database {
             e.printStackTrace();
         }
         if (user instanceof CityOfficial) {
+            System.out.println("user is a city official");
             CityOfficial cityOfficial = (CityOfficial) user;
             addCityOfficialToDatabase(cityOfficial);
         }
@@ -74,13 +75,12 @@ public class Database {
     private void addCityOfficialToDatabase(CityOfficial cityOfficial) {
         try {
             String query = "INSERT INTO city_official " +
-                    "(username, title, approval, city, state) values (?, ?, ?, ?, ?)";
+                    "(username, title, city, state) values (?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, cityOfficial.getUsername());
             st.setString(2, cityOfficial.getTitle());
-            st.setBoolean(3, false);
-            st.setString(4, cityOfficial.getCity());
-            st.setString(5, cityOfficial.getState());
+            st.setString(3, cityOfficial.getCity());
+            st.setString(4, cityOfficial.getState());
             st.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,17 +120,16 @@ public class Database {
      * @param poi data point to insert into the database
      * @return true if data point is added, false if data point is in the database already
      */
-    public boolean addDataPointToDatabase(Datapoint poi) {
+    public boolean addDataPointToDatabase(DataPoint poi) {
         try {
             String query = "INSERT INTO data_point " +
-                    "(poi_name, date_of_reading, time_of_reading, data_value, data_type, accepted) values (?, ?, ?, ?, ?, ?)";
+                    "(poi_name, date_of_reading, time_of_reading, data_value, data_type) values (?, ?, ?, ?, ?)";
             st = con.prepareStatement(query);
             st.setString(1, poi.getLocationName());
             st.setString(2, poi.getDate());
             st.setString(3, poi.getTime());
             st.setInt(4, poi.getDataValue());
             st.setString(5, poi.getDataType());
-            st.setBoolean(6, poi.getAccepted());
             st.execute();
             return true;
 
@@ -166,7 +165,11 @@ public class Database {
                     Admin admin = new Admin(username, password, email);
                     return admin;
                 } else if (user_type.equals("city official")) {
-                    return new User(username, password, email, "city official");
+                    if (checkApproved(username)) {
+                        return new User(username, password, email, "city official");
+                    } else {
+                        return null;
+                    }
                 }
             }
 
@@ -177,6 +180,23 @@ public class Database {
         return null;
     }
 
+    private boolean checkApproved(String username) {
+        boolean approval = false;
+        try {
+            String query = "SELECT approval FROM city_official WHERE username = ?";
+            st = con.prepareStatement(query);
+            st.setString(1, username);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                System.out.println("City Official approval found.");
+                approval = rs.getBoolean("approval");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return approval;
+    }
     /**
      * loads the data types from the database
      */
@@ -197,6 +217,9 @@ public class Database {
         }
     }
 
+    /**
+     * loads the city states from the database
+     */
     public void loadCityStatesFromDatabase() {
         System.out.println("CityStates refreshed");
         CityState.getCities().clear();
@@ -207,8 +230,12 @@ public class Database {
             rs = st.executeQuery();
             while(rs.next()) {
                 CityState cityState = new CityState(rs.getString("city"), rs.getString("state"));
-                CityState.getCities().add(cityState.getCity());
-                CityState.getStates().add(cityState.getState());
+                if (!CityState.getCities().contains(cityState.getCity())) {
+                    CityState.getCities().add(cityState.getCity());
+                }
+                if (!CityState.getStates().contains(cityState.getState())) {
+                    CityState.getStates().add(cityState.getState());
+                }
             }
 
         } catch (SQLException e) {
@@ -220,13 +247,15 @@ public class Database {
      * loads the pending city officials
      */
     public void loadPendingCityOfficialsFromDatabase() {
-        System.out.println("City Officials refreshed");
-        CityOfficial.getCityOfficials().clear();
+        System.out.println("Pending City Officials refreshed");
+        // clear the list to show refresh
+        CityOfficial.getPendingCityOfficials().clear();
         try {
-            String query = "SELECT * FROM city_official INNER JOIN user ON city_official.username = user.username WHERE NOT city_official.approval";
+            // if approval is NULL city official is pending
+            String query = "SELECT * FROM city_official INNER JOIN user ON city_official.username = user.username WHERE city_official.approval IS NULL";
             st = con.prepareStatement(query);
             rs = st.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 CityState cityState = new CityState(rs.getString("city"), rs.getString("state"));
 
                 CityOfficial cityOfficial = new CityOfficial(
@@ -235,7 +264,7 @@ public class Database {
                         rs.getString("email"),
                         rs.getString("title"), cityState
                         );
-                CityOfficial.getCityOfficials().add(cityOfficial);
+                CityOfficial.getPendingCityOfficials().add(cityOfficial);
             }
 
         } catch (SQLException e) {
@@ -248,20 +277,21 @@ public class Database {
      */
     public void loadPendingDataPointsFromDatabase() {
         System.out.println("Data Points refreshed");
-        Datapoint.getDataPoints().clear();
+        // clear the list to show refresh
+        DataPoint.getPendingDataPoints().clear();
         try {
-            String query = "SELECT * FROM data_point WHERE NOT data_point.accepted";
+            String query = "SELECT * FROM data_point WHERE data_point.accepted IS NULL";
             st = con.prepareStatement(query);
             rs = st.executeQuery();
             while(rs.next()) {
-                Datapoint point = new Datapoint(
+                DataPoint point = new DataPoint(
                         rs.getString("poi_name"),
                         rs.getString("date_of_reading"),
                         rs.getString("time_of_reading"),
                         rs.getInt("data_value"),
                         rs.getString("data_type")
                 );
-                Datapoint.getDataPoints().add(point);
+                DataPoint.getPendingDataPoints().add(point);
             }
 
         } catch (SQLException e) {
@@ -277,15 +307,14 @@ public class Database {
         POI.getPois().clear();
         POI.getPoisNames().clear();
         try {
-            System.out.println("loading");
             String query = "SELECT location_name as ln, city, state, zip_code, date_flagged, flag,\n" +
-                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_min,\n" +
-                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_avg,\n" +
-                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\") mold_max,\n" +
-                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_min,\n" +
-                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_avg,\n" +
-                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\") aq_max,\n" +
-                    "(SELECT COUNT(*) FROM data_point as dp WHERE ln = dp.poi_name) count FROM poi";
+                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\" AND dp.accepted = 1) mold_min,\n" +
+                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\" AND dp.accepted = 1) mold_avg,\n" +
+                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\" AND dp.accepted = 1) mold_max,\n" +
+                    "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\" AND dp.accepted = 1) aq_min,\n" +
+                    "(SELECT AVG(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\" AND dp.accepted = 1) aq_avg,\n" +
+                    "(SELECT MAX(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Air Quality\" AND dp.accepted = 1) aq_max,\n" +
+                    "(SELECT COUNT(*) FROM data_point as dp WHERE ln = dp.poi_name AND dp.accepted = 1) count FROM poi";
             st = con.prepareStatement(query);
             rs = st.executeQuery();
             while(rs.next()) {
@@ -315,8 +344,12 @@ public class Database {
         }
     }
 
+    /**
+     * changes status of city officials to approved
+     * @param cityOfficials list of city officials that will be approved
+     */
     public void acceptCityOfficialAccountsIntoDatabase(ArrayList<CityOfficial> cityOfficials) {
-        System.out.println("City Officials Accepted into Database");
+        System.out.println("City Officials Accepted");
         for (int i = 0; i < cityOfficials.size(); i++) {
             try {
                 String query = "UPDATE city_official SET approval = ? where username = ?";
@@ -330,13 +363,18 @@ public class Database {
         }
     }
 
+    /**
+     * changes status of city officials to rejected
+     * @param cityOfficials list of city officials that will be rejected
+     */
     public void rejectCityOfficialAccountsIntoDatabase(ArrayList<CityOfficial> cityOfficials) {
-        System.out.println("City Officials Deleted from Database");
+        System.out.println("City Officials Rejected");
         for (int i = 0; i < cityOfficials.size(); i++) {
             try {
-                String query = "DELETE FROM user where username = ?";
+                String query = "UPDATE city_official SET approval = ? where username = ?";
                 st = con.prepareStatement(query);
-                st.setString(1, cityOfficials.get(i).getUsername());
+                st.setBoolean(1, false);
+                st.setString(2, cityOfficials.get(i).getUsername());
                 st.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -344,7 +382,11 @@ public class Database {
         }
     }
 
-    public void acceptDataPointIntoDatabase(ArrayList<Datapoint> dataPoints) {
+    /**
+     * sets accepted status of data points to true
+     * @param dataPoints list of data points to update to true
+     */
+    public void acceptDataPointIntoDatabase(ArrayList<DataPoint> dataPoints) {
         System.out.println("Data Point Accepted into Database");
         for (int i = 0; i < dataPoints.size(); i++) {
             try {
@@ -362,20 +404,43 @@ public class Database {
         }
     }
 
-    public void rejectDataPointIntoDatabase(ArrayList<Datapoint> dataPoints) {
-        System.out.println("Data Point Deleted from Database");
+    /**
+     * sets accepted status of data points to false
+     * @param dataPoints list of data points to update to false
+     */
+    public void rejectDataPointIntoDatabase(ArrayList<DataPoint> dataPoints) {
+        System.out.println("Data Point Rejected into Database");
         for (int i = 0; i < dataPoints.size(); i++) {
             try {
-                String query = "DELETE FROM data_point where poi_name = ? AND date_of_reading = ? " +
+                String query = "UPDATE data_point SET accepted = ? where poi_name = ? AND date_of_reading = ? " +
                         "AND time_of_reading = ?";
                 st = con.prepareStatement(query);
-                st.setString(1, dataPoints.get(i).getLocationName());
-                st.setString(2, dataPoints.get(i).getDate());
-                st.setString(3, dataPoints.get(i).getTime());
+                st.setBoolean(1, false);
+                st.setString(2, dataPoints.get(i).getLocationName());
+                st.setString(3, dataPoints.get(i).getDate());
+                st.setString(4, dataPoints.get(i).getTime());
                 st.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean checkCityStatesExist(String city, String state) {
+        try {
+            String query = "SELECT * FROM city_state WHERE city = ? AND state = ?";
+            st = con.prepareStatement(query);
+            st.setString(1, city);
+            st.setString(2, state);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                System.out.println("City State combination Found.");
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("City state does not exit");
+        }
+        return false;
     }
 }

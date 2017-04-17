@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Datapoint;
+import model.DataPoint;
 import model.Model;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class PendingDataPointsController {
 
     @FXML
-    private TableView dataPointTable;
+    private TableView<DataPoint> dataPointTable;
     @FXML
     private TableColumn selectCol;
     @FXML
@@ -34,7 +34,8 @@ public class PendingDataPointsController {
     @FXML
     private TableColumn dateCol;
 
-    ArrayList<Datapoint> dataPoints;
+    // list of data points that will be accepted or rejected
+    private ArrayList<DataPoint> dataPoints;
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
@@ -65,14 +66,13 @@ public class PendingDataPointsController {
                 new PropertyValueFactory<>("time"));
         dateCol.setCellValueFactory(
                 new PropertyValueFactory<>("date"));
-        dataPointTable.setItems(Datapoint.getDataPoints());
+        dataPointTable.setItems(DataPoint.getPendingDataPoints());
 
-
-        selectCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Datapoint, CheckBox>, ObservableValue<CheckBox>>() {
+        selectCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<DataPoint, CheckBox>, ObservableValue<CheckBox>>() {
 
             @Override
-            public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<Datapoint, CheckBox> arg0) {
-                Datapoint point = arg0.getValue();
+            public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<DataPoint, CheckBox> arg0) {
+                DataPoint point = arg0.getValue();
                 CheckBox checkBox = new CheckBox();
                 checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                     public void changed(ObservableValue<? extends Boolean> ov,
@@ -84,12 +84,10 @@ public class PendingDataPointsController {
                         }
                     }
                 });
+
                 return new SimpleObjectProperty<CheckBox>(checkBox);
-
             }
-
         });
-
     }
 
     /**
@@ -97,7 +95,7 @@ public class PendingDataPointsController {
      */
     @FXML
     private void handleAcceptPressed() {
-        if(dataPoints.size() != 0) {
+        if (dataPoints.size() != 0) {
             dataPointTable.getItems().removeAll(dataPoints);
             Model.getInstance().acceptDataPoints(dataPoints);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -108,7 +106,7 @@ public class PendingDataPointsController {
             for (int i = 0; i < dataPoints.size(); i++) {
                 message += dataPoints.get(i) + "\n";
             }
-            alert.setHeaderText("Accepted City Data Points");
+            alert.setHeaderText("Accepted Data Points");
             alert.setContentText(message);
             alert.showAndWait();
             dataPoints.clear();
@@ -120,7 +118,7 @@ public class PendingDataPointsController {
      */
     @FXML
     private void handleRejectPressed() {
-        if(dataPoints.size() != 0) {
+        if (dataPoints.size() != 0) {
             dataPointTable.getItems().removeAll(dataPoints);
             Model.getInstance().rejectDataPoints(dataPoints);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

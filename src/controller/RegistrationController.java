@@ -104,14 +104,10 @@ public class RegistrationController {
                         emailField.getText(),
                         userTypeComboBox.getSelectionModel().getSelectedItem());
             }
-            // if user is successfully added, take that user to the appropriate screen
+            // if user is successfully added, take them to login screen
             if (Model.getInstance().addUser(user)) {
                 clearFields();
-                if (userTypeComboBox.getValue().equals("city official")) {
-                    mainApplication.displayFunctionalityCityOfficialScene();
-                } else {
-                    mainApplication.displayFunctionalityCityScientistScene();
-                }
+                mainApplication.displayLoginScene();
             } else {
                 // if the add fails, notify the user
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -151,6 +147,9 @@ public class RegistrationController {
         if (userTypeComboBox.getValue().equals("city official")) {
             if ((titleField.getText() == null) || (titleField.getText().isEmpty())) {
                 errorMessage += "Not valid title!\n";
+            }
+            if (!Model.getInstance().checkCityStateCombo(cityComboBox.getValue(), stateComboBox.getValue())) {
+                errorMessage += "Not valid city state combination\n";
             }
         }
 

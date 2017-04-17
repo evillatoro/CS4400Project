@@ -18,7 +18,7 @@ public class FunctionalityCityOfficialController {
     }
 
     /**
-     * called when the user clicks filer/search POI
+     * called when the user clicks filter/search POI
      */
     @FXML
     private void handleFilterSearchPOIPressed() {

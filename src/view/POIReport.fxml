@@ -31,7 +31,7 @@
             <TableColumn fx:id="moldAvgCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Avg" />
             <TableColumn fx:id="moldMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Mold Max" />
             <TableColumn fx:id="aqMinCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Min" />
-            <TableColumn fx:id="aqAvgCol" editable="false" prefWidth="71.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Avg" />
+            <TableColumn fx:id="aqAvgCol" editable="false" prefWidth="71.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Avg" />
             <TableColumn fx:id="aqMaxCol" editable="false" prefWidth="63.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="AQ Max" />
             <TableColumn fx:id="countCol" editable="false" prefWidth="79.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="# Data Points" />
             <TableColumn fx:id="flaggedCol" editable="false" prefWidth="75.0" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Flagged?" />

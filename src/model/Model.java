@@ -47,12 +47,12 @@ public final class Model {
     }
 
     /**
-     * add a datapoint to the database
-     * @param datapoint the datapoint to add to the database
-     * @return true if datapoint added, false if not added
+     * add a dataPoint to the database
+     * @param dataPoint the dataPoint to add to the database
+     * @return true if dataPoint added, false if not added
      */
-    public boolean addDataPoint(Datapoint datapoint) {
-        return database.addDataPointToDatabase(datapoint);
+    public boolean addDataPoint(DataPoint dataPoint) {
+        return database.addDataPointToDatabase(dataPoint);
     }
 
     /**
@@ -94,11 +94,15 @@ public final class Model {
         database.rejectCityOfficialAccountsIntoDatabase(cityOfficials);
     }
 
-    public void acceptDataPoints(ArrayList<Datapoint> dataPoints) {
+    public void acceptDataPoints(ArrayList<DataPoint> dataPoints) {
         database.acceptDataPointIntoDatabase(dataPoints);
     }
 
-    public void rejectDataPoints(ArrayList<Datapoint> dataPoints) {
+    public void rejectDataPoints(ArrayList<DataPoint> dataPoints) {
         database.rejectDataPointIntoDatabase(dataPoints);
+    }
+
+    public boolean checkCityStateCombo(String city, String state) {
+        return database.checkCityStatesExist(city, state);
     }
 }

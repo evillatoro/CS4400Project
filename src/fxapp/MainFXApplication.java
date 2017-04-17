@@ -49,7 +49,6 @@ public class MainFXApplication extends Application {
 
     /**
      * window of application
-     *
      * @return main stage of application
      */
     public Stage getWindow() {
@@ -247,9 +246,10 @@ public class MainFXApplication extends Application {
     }
 
     /**
-     * display login scene
+     * display add new data point scene
      */
     public void displayAddNewDataPointScene() {
+        Model.getInstance().loadPOILocations();
         window.setScene(addNewDataPointScene);
         window.show();
     }
@@ -274,6 +274,7 @@ public class MainFXApplication extends Application {
      * display pending data points scene
      */
     public void displayPendingDataPointsScene() {
+        Model.getInstance().loadPendingDataPoints();
         window.setScene(pendingDataPointsScene);
         window.show();
     }
@@ -282,6 +283,7 @@ public class MainFXApplication extends Application {
      * display pending city official accounts scene
      */
     public void displayPendingCityOfficialAccountsScene() {
+        Model.getInstance().loadPendingCityOfficials();
         window.setScene(pendingCityOfficialAccountsScene);
         window.show();
     }
@@ -314,6 +316,7 @@ public class MainFXApplication extends Application {
      * display POI report scene
      */
     public void displayPOIReportScene() {
+        Model.getInstance().loadPOILocations();
         window.setScene(POIReportScene);
         window.show();
     }

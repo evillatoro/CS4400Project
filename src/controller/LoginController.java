@@ -64,7 +64,7 @@ public class LoginController {
                 Stage stage = mainApplication.getWindow();
                 alert.initOwner(stage);
                 alert.setTitle("Error");
-                alert.setHeaderText("wrong username or password");
+                alert.setHeaderText("wrong username or password or you have not been approved");
                 alert.showAndWait();
             }
         }

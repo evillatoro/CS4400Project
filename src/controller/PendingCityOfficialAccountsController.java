@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class PendingCityOfficialAccountsController {
 
     @FXML
-    private TableView cityOfficialTable;
+    private TableView<CityOfficial> cityOfficialTable;
     @FXML
     private TableColumn selectCol;
     @FXML
@@ -34,8 +34,8 @@ public class PendingCityOfficialAccountsController {
     @FXML
     private TableColumn titleCol;
 
-    ArrayList<CityOfficial> cityOfficials;
-
+    // list of city officials that will be accepted or rejected
+    private ArrayList<CityOfficial> cityOfficials;
 
     /** a link back to the main application class */
     private MainFXApplication mainApplication;
@@ -66,18 +66,14 @@ public class PendingCityOfficialAccountsController {
                 new PropertyValueFactory<>("state"));
         titleCol.setCellValueFactory(
                 new PropertyValueFactory<>("title"));
-        cityOfficialTable.setItems(CityOfficial.getCityOfficials());
-
+        cityOfficialTable.setItems(CityOfficial.getPendingCityOfficials());
 
         selectCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<CityOfficial, CheckBox>, ObservableValue<CheckBox>>() {
 
             @Override
-            public ObservableValue<CheckBox> call(
-                    TableColumn.CellDataFeatures<CityOfficial, CheckBox> arg0) {
+            public ObservableValue<CheckBox> call(TableColumn.CellDataFeatures<CityOfficial, CheckBox> arg0) {
                 CityOfficial user = arg0.getValue();
-
                 CheckBox checkBox = new CheckBox();
-
                 checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                     public void changed(ObservableValue<? extends Boolean> ov,
                                         Boolean old_val, Boolean new_val) {
@@ -86,16 +82,12 @@ public class PendingCityOfficialAccountsController {
                         } else {
                             cityOfficials.remove(user);
                         }
-
                     }
                 });
 
                 return new SimpleObjectProperty<CheckBox>(checkBox);
-
             }
-
         });
-
     }
 
     /**
@@ -103,7 +95,7 @@ public class PendingCityOfficialAccountsController {
      */
     @FXML
     private void handleAcceptPressed() {
-        if(cityOfficials.size() != 0) {
+        if (cityOfficials.size() != 0) {
             cityOfficialTable.getItems().removeAll(cityOfficials);
             Model.getInstance().acceptCityOfficialAccounts(cityOfficials);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -126,7 +118,7 @@ public class PendingCityOfficialAccountsController {
      */
     @FXML
     private void handleRejectPressed() {
-        if(cityOfficials.size() != 0) {
+        if (cityOfficials.size() != 0) {
             cityOfficialTable.getItems().removeAll(cityOfficials);
             Model.getInstance().rejectCityOfficialAccounts(cityOfficials);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

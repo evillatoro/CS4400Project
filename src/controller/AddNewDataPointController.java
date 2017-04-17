@@ -7,8 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import model.DataPoint;
 import model.DataType;
-import model.Datapoint;
 import model.Model;
 import model.POI;
 
@@ -53,7 +53,6 @@ public class AddNewDataPointController {
         POILocationNameComboBox.setValue(POI.getPoisNames().get(0));
 
         resetPickers();
-
     }
 
     /**
@@ -79,7 +78,7 @@ public class AddNewDataPointController {
     @FXML
     private void handleSubmitPressed() {
         if (isInputValid()) {
-            Datapoint datapoint = new Datapoint(
+            DataPoint dataPoint = new DataPoint(
                     POILocationNameComboBox.getValue(),
                     datePickerNewDataPoint.getValue().toString(),
                     timePickerNewDataPoint.getValue().toString(),
@@ -87,7 +86,7 @@ public class AddNewDataPointController {
                     dataTypeComboBox.getValue()
             );
             // if POI is successfully added, inform user it was successful
-            if (Model.getInstance().addDataPoint(datapoint)) {
+            if (Model.getInstance().addDataPoint(dataPoint)) {
                 clearFields();
                 // if the POI fails, notify the user
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -107,7 +106,6 @@ public class AddNewDataPointController {
                 alert.showAndWait();
             }
         }
-
     }
 
     /**

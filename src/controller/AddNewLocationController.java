@@ -31,6 +31,7 @@ public class AddNewLocationController {
     public void setMainApp(MainFXApplication mainFXApplication) {
         mainApplication = mainFXApplication;
     }
+
     /**
      * sets the choice box with data types
      */
@@ -86,8 +87,6 @@ public class AddNewLocationController {
                 alert.showAndWait();
             }
         }
-
-
     }
 
     private boolean isInputValid() {
@@ -107,6 +106,10 @@ public class AddNewLocationController {
             } catch (NumberFormatException e) {
                 errorMessage += "No valid zip code!\n";
             }
+        }
+
+        if (!Model.getInstance().checkCityStateCombo(cityChoiceBox.getValue(), stateChoiceBox.getValue())) {
+            errorMessage += "Not valid city state combination\n";
         }
 
         //no error message means success / good input
