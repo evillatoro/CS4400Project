@@ -106,6 +106,8 @@ public class Database {
             st.execute();
             POI.getPois().add(poi);
             POI.getPoisNames().add(poi.getName());
+            POI.getPoisNamesForFilter().add(poi.getName());
+            POI.getPoisForFilter().add(poi);
             return true;
 
         } catch (SQLException e) {
@@ -224,6 +226,11 @@ public class Database {
         System.out.println("CityStates refreshed");
         CityState.getCities().clear();
         CityState.getStates().clear();
+        CityState.getCitiesForFilter().clear();
+        CityState.getStatesForFilter().clear();
+        CityState.getCitiesForFilter().add("None selected");
+        CityState.getStatesForFilter().add("None selected");
+
         try {
             String query = "SELECT * FROM city_state";
             st = con.prepareStatement(query);
@@ -232,9 +239,11 @@ public class Database {
                 CityState cityState = new CityState(rs.getString("city"), rs.getString("state"));
                 if (!CityState.getCities().contains(cityState.getCity())) {
                     CityState.getCities().add(cityState.getCity());
+                    CityState.getCitiesForFilter().add(cityState.getCity());
                 }
                 if (!CityState.getStates().contains(cityState.getState())) {
                     CityState.getStates().add(cityState.getState());
+                    CityState.getStatesForFilter().add(cityState.getState());
                 }
             }
 
@@ -306,6 +315,9 @@ public class Database {
         System.out.println("POI Locations refreshed");
         POI.getPois().clear();
         POI.getPoisNames().clear();
+        POI.getPoisNamesForFilter().clear();
+        POI.getPoisNamesForFilter().add("None selected");
+        POI.getPoisForFilter().clear();
         try {
             String query = "SELECT location_name as ln, city, state, zip_code, date_flagged, flag,\n" +
                     "(SELECT MIN(dp.data_value) FROM data_point as dp WHERE ln = dp.poi_name AND data_type = \"Mold\" AND dp.accepted = 1) mold_min,\n" +
@@ -337,6 +349,8 @@ public class Database {
 
                 POI.getPois().add(poi);
                 POI.getPoisNames().add(poi.getName());
+                POI.getPoisNamesForFilter().add(poi.getName());
+                POI.getPoisForFilter().add(poi);
             }
 
         } catch (SQLException e) {
@@ -442,5 +456,29 @@ public class Database {
             System.out.println("City state does not exit");
         }
         return false;
+    }
+
+    public void doQueryInDatabase(String query) {
+        System.out.println("POI Locations for Filter refreshed");
+        POI.getPoisForFilter().clear();
+        try {
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                CityState cityState = new CityState(rs.getString("city"),rs.getString("state"));
+                POI poi = new POI(
+                        rs.getString("location_name"),
+                        rs.getBoolean("flag"),
+                        rs.getString("date_flagged"),
+                        rs.getInt("zip_code"),
+                        cityState
+                );
+
+                POI.getPoisForFilter().add(poi);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

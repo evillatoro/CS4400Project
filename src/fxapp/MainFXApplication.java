@@ -39,6 +39,8 @@ public class MainFXApplication extends Application {
     private Scene POIDetailScene;
     private Scene POIReportScene;
 
+    private ViewPOIsController viewPOIsController;
+
     /**
      * start up application
      * @param args default
@@ -191,8 +193,8 @@ public class MainFXApplication extends Application {
         Pane POIReportLayout = loader.load();
 
         // Give the controller access to the main app.
-        ViewPOIsController controller = loader.getController();
-        controller.setMainApp(this);
+        viewPOIsController = loader.getController();
+        viewPOIsController.setMainApp(this);
 
         viewPOIsScene = new Scene(POIReportLayout);
     }
@@ -300,6 +302,8 @@ public class MainFXApplication extends Application {
      * display view POIs scene
      */
     public void displayViewPOIsScene() {
+        Model.getInstance().loadPOILocations();
+        viewPOIsController.setNoneSelected();
         window.setScene(viewPOIsScene);
         window.show();
     }

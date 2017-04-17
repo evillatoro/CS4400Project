@@ -105,4 +105,8 @@ public final class Model {
     public boolean checkCityStateCombo(String city, String state) {
         return database.checkCityStatesExist(city, state);
     }
+
+    public void doQuery(String query) {
+        database.doQueryInDatabase(query);
+    }
 }

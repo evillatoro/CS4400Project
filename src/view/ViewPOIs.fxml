@@ -69,7 +69,7 @@
          </font>
       </Text>
       <ChoiceBox fx:id="poiLocationNameChoiceBox" layoutX="177.0" layoutY="81.0" prefHeight="27.0" prefWidth="165.0" />
-      <TextField fx:id="zipCodeTextField" layoutX="177.0" layoutY="212.0" prefHeight="27.0" prefWidth="84.0" />
+      <TextField fx:id="zipCodeTextField" layoutX="177.0" layoutY="212.0" prefHeight="27.0" prefWidth="133.0" />
       <DatePicker fx:id="fromDatePicker" layoutX="177.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
       <DatePicker fx:id="toDatePicker" layoutX="342.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
       <Text layoutX="35.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State">
@@ -87,8 +87,8 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="stateChoiceBox" layoutX="177.0" layoutY="169.0" prefHeight="27.0" prefWidth="109.0" />
-      <ChoiceBox fx:id="cityChoiceBox" layoutX="177.0" layoutY="126.0" prefHeight="17.0" prefWidth="95.0" />
+      <ChoiceBox fx:id="stateChoiceBox" layoutX="177.0" layoutY="169.0" prefHeight="27.0" prefWidth="133.0" />
+      <ChoiceBox fx:id="cityChoiceBox" layoutX="177.0" layoutY="126.0" prefHeight="27.0" prefWidth="133.0" />
       <CheckBox fx:id="flaggedCheckBox" layoutX="176.0" layoutY="254.0" mnemonicParsing="false" />
    </children>
 </Pane>

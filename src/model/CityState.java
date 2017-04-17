@@ -15,6 +15,10 @@ public class CityState {
     private static ObservableList<String> cities = FXCollections.observableArrayList();
     /** a list of all states*/
     private static ObservableList<String> states = FXCollections.observableArrayList();
+    /** a list of all cities*/
+    private static ObservableList<String> citiesForFilter = FXCollections.observableArrayList();
+    /** a list of all states*/
+    private static ObservableList<String> statesForFilter = FXCollections.observableArrayList();
 
     /**
      * makes a City State with a city and state
@@ -56,5 +60,21 @@ public class CityState {
 
     public static void setStates(ObservableList<String> states) {
         CityState.states = states;
+    }
+
+    public static ObservableList<String> getCitiesForFilter() {
+        return citiesForFilter;
+    }
+
+    public static void setCitiesForFilter(ObservableList<String> citiesForFilter) {
+        CityState.citiesForFilter = citiesForFilter;
+    }
+
+    public static ObservableList<String> getStatesForFilter() {
+        return statesForFilter;
+    }
+
+    public static void setStatesForFilter(ObservableList<String> statesForFilter) {
+        CityState.statesForFilter = statesForFilter;
     }
 }

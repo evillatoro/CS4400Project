@@ -36,8 +36,11 @@ public class POI {
     /** a list of all the POI Locations names*/
     private static ObservableList<String> poisNames = FXCollections.observableArrayList();
 
-    /** a list of all the POI Locations for report screen*/
-    private static ObservableList<String> poisForReport = FXCollections.observableArrayList();
+    /** a list of all the POI Locations for view poi screen*/
+    private static ObservableList<POI> poisForFilter = FXCollections.observableArrayList();
+
+    /** a list of all the POI Locations names for view poi screen*/
+    private static ObservableList<String> poisNamesForFilter = FXCollections.observableArrayList();
 
     /**
      * makes a POI with a name, flagged, date flagged, zip code, CityState object used when loading from database
@@ -287,12 +290,19 @@ public class POI {
         POI.poisNames = poisNames;
     }
 
-    public static ObservableList<String> getPoisForReport() {
-        return poisForReport;
+    public static ObservableList<POI> getPoisForFilter() {
+        return poisForFilter;
     }
 
-    public static void setPoisForReport(ObservableList<String> poisForReport) {
-        POI.poisForReport = poisForReport;
+    public static void setPoisForFilter(ObservableList<POI> poisForFilter) {
+        POI.poisForFilter = poisForFilter;
     }
 
+    public static ObservableList<String> getPoisNamesForFilter() {
+        return poisNamesForFilter;
+    }
+
+    public static void setPoisNamesForFilter(ObservableList<String> poisNamesForFilter) {
+        POI.poisNamesForFilter = poisNamesForFilter;
+    }
 }

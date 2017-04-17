@@ -6,7 +6,6 @@ import fxapp.MainFXApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class POIDetailController {
@@ -57,9 +56,8 @@ public class POIDetailController {
         dataValueMax.clear();
         datePickerMax.setValue(null);
         datePickerMin.setValue(null);
-        timePickerMin.setValue(null);
-        timePickerMax.setValue(null);
-
+        timePickerMin.getEditor().clear();
+        timePickerMax.getEditor().clear();
     }
 
     /**
