@@ -505,4 +505,23 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void updatePOIInDatabase(POI poi) {
+        System.out.println("POI updated to " + poi.getFlagged());
+        try {
+            String query = "UPDATE poi SET flag = ?, date_flagged = ? where location_name = ?";
+            st = con.prepareStatement(query);
+            st.setBoolean(1, poi.getFlagged());
+            if (poi.getFlagged()) {
+                st.setString(2, poi.getDateFlagged());
+            } else {
+                st.setString(2, null);
+            }
+            st.setString(3, poi.getName());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

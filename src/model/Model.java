@@ -113,4 +113,8 @@ public final class Model {
     public void doDataPointQuery(String query) {
         database.doDataPointQueryInDatabase(query);
     }
+
+    public void updatePOI(POI poi) {
+        database.updatePOIInDatabase(poi);
+    }
 }

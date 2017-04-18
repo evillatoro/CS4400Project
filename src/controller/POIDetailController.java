@@ -3,8 +3,11 @@ package controller;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTimePicker;
 import fxapp.MainFXApplication;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -49,6 +52,8 @@ public class POIDetailController {
     private TableColumn timeCol;
     @FXML
     private TableColumn dateCol;
+    @FXML
+    private CheckBox flaggedCheckBox;
 
     private POI currentPOI;
 
@@ -84,6 +89,18 @@ public class POIDetailController {
 
         timePickerMin.setValue(LocalTime.now());
         timePickerMax.setValue(LocalTime.now());
+
+        flaggedCheckBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (currentPOI.getFlagged() != newValue) {
+                    currentPOI.setFlagged(newValue);
+                    currentPOI.setDateFlagged(LocalDate.now().toString());
+                    Model.getInstance().updatePOI(currentPOI);
+                }
+//
+            }
+        });
     }
 
     /**
@@ -119,14 +136,6 @@ public class POIDetailController {
     private void handleBackPressed() {
         resetFields();
         mainApplication.displayViewPOIsScene();
-    }
-
-    /**
-     * called when the user clicks flag
-     */
-    @FXML
-    private void handleFlagPressed() {
-
     }
 
     /**
@@ -189,6 +198,7 @@ public class POIDetailController {
         if (poi != null) {
             currentPOI = poi;
             poiLocationLabel.setText(poi.getName());
+            flaggedCheckBox.setSelected(poi.getFlagged());
             String query = "SELECT * FROM data_point WHERE poi_name = \"" + currentPOI.getName() + "\"" +
                     "AND accepted = TRUE";
             Model.getInstance().doDataPointQuery(query);
