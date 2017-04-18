@@ -109,4 +109,8 @@ public final class Model {
     public void doQuery(String query) {
         database.doQueryInDatabase(query);
     }
+
+    public void doDataPointQuery(String query) {
+        database.doDataPointQueryInDatabase(query);
+    }
 }

@@ -205,6 +205,8 @@ public class Database {
     public void loadDataTypesFromDatabase() {
         System.out.println("Data Types refreshed");
         DataType.getDataTypes().clear();
+        DataType.getDataTypesForFilter().clear();
+        DataType.getDataTypesForFilter().add("None selected");
         try {
             String query = "SELECT type FROM data_type";
             st = con.prepareStatement(query);
@@ -212,8 +214,8 @@ public class Database {
             while(rs.next()) {
                 DataType dataType = new DataType(rs.getString("type"));
                 DataType.getDataTypes().add(dataType.getDataTypeName());
+                DataType.getDataTypesForFilter().add(dataType.getDataTypeName());
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -475,6 +477,28 @@ public class Database {
                 );
 
                 POI.getPoisForFilter().add(poi);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void doDataPointQueryInDatabase(String query) {
+        System.out.println("Data Points for Filter refreshed");
+        DataPoint.getPoiDetailDataPoints().clear();
+        try {
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
+            while(rs.next()) {
+                DataPoint point = new DataPoint(
+                        rs.getString("poi_name"),
+                        rs.getString("date_of_reading"),
+                        rs.getString("time_of_reading"),
+                        rs.getInt("data_value"),
+                        rs.getString("data_type")
+                );
+                DataPoint.getPoiDetailDataPoints().add(point);
             }
 
         } catch (SQLException e) {

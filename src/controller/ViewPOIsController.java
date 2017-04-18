@@ -105,7 +105,8 @@ public class ViewPOIsController {
         toDatePicker.setDisable(true);
 
         poiLocationTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            mainApplication.displayPOIDetailScene();
+            POI currentPOISelected = (POI) newSelection;
+            mainApplication.displayPOIDetailScene(currentPOISelected);
         });
     }
 

@@ -13,14 +13,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="635.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.POIDetailController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="635.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.POIDetailController">
    <children>
       <Label layoutX="274.0" layoutY="32.0" text="POI Detail" textFill="#c99e03">
          <font>
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button onAction="#handleApplyFilterPressed" layoutX="366.0" layoutY="249.0" mnemonicParsing="false" text="Apply Filter">
+      <Button layoutX="366.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleApplyFilterPressed" text="Apply Filter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -32,25 +32,26 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <Button onAction="#handleResetFilterPressed" layoutX="495.0" layoutY="249.0" mnemonicParsing="false" text="Reset Filter">
+      <Button layoutX="495.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleResetFilterPressed" text="Reset Filter">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
       <TableView fx:id="POIDetailTableView" layoutX="114.0" layoutY="322.0" prefHeight="191.0" prefWidth="407.0" style="-fx-border-color: black; -fx-border-width: 2;">
         <columns>
-          <TableColumn editable="false" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
-          <TableColumn editable="false" prefWidth="92.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
-            <TableColumn editable="false" prefWidth="231.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time &amp; Date of Reading" />
+          <TableColumn fx:id="dataTypeCol" editable="false" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Type" />
+          <TableColumn fx:id="dataValueCol" editable="false" prefWidth="92.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Data Value" />
+            <TableColumn fx:id="timeCol" editable="false" prefWidth="109.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Time of Reading" />
+            <TableColumn fx:id="dateCol" editable="false" maxWidth="141.0" prefWidth="123.0" sortable="false" style="-fx-font-size: 10; -fx-font-family: Atlanta;" text="Date of Reading" />
         </columns>
       </TableView>
-      <Button onAction="#handleFlagPressed" layoutX="499.0" layoutY="530.0" mnemonicParsing="false" text="Flag">
+      <Button layoutX="499.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleFlagPressed" text="Flag">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
       <Line endX="465.0" layoutX="135.0" layoutY="296.0" startX="-100.0" strokeWidth="1.25" />
-      <Label layoutX="95.0" layoutY="7.0" text="Label">
+      <Label fx:id="poiLocationLabel" layoutX="95.0" layoutY="7.0" text="Label">
          <font>
             <Font name="Atlanta Book" size="10.0" />
          </font>
@@ -80,7 +81,7 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="typeChoiceBox" layoutX="122.0" layoutY="80.0" prefHeight="17.0" prefWidth="95.0" />
+      <ChoiceBox fx:id="typeChoiceBox" layoutX="122.0" layoutY="80.0" prefHeight="27.0" prefWidth="129.0" />
       <TextField fx:id="dataValueMin" layoutX="122.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
       <TextField fx:id="dataValueMax" layoutX="228.0" layoutY="125.0" prefHeight="27.0" prefWidth="49.0" />
       <Text layoutX="23.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="POI Location:">

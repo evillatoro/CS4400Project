@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Model;
+import model.POI;
 
 import java.io.IOException;
 
@@ -40,6 +41,7 @@ public class MainFXApplication extends Application {
     private Scene POIReportScene;
 
     private ViewPOIsController viewPOIsController;
+    private POIDetailController poiDetailController;
 
     /**
      * start up application
@@ -205,8 +207,8 @@ public class MainFXApplication extends Application {
         Pane POIReportLayout = loader.load();
 
         // Give the controller access to the main app.
-        POIDetailController controller = loader.getController();
-        controller.setMainApp(this);
+        poiDetailController = loader.getController();
+        poiDetailController.setMainApp(this);
 
         POIDetailScene = new Scene(POIReportLayout);
     }
@@ -311,7 +313,8 @@ public class MainFXApplication extends Application {
     /**
      * display POI detail scene
      */
-    public void displayPOIDetailScene() {
+    public void displayPOIDetailScene(POI poi) {
+        poiDetailController.setCurrentPOI(poi);
         window.setScene(POIDetailScene);
         window.show();
     }

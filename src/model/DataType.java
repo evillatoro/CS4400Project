@@ -13,6 +13,9 @@ public class DataType {
     /** a list of all the data types*/
     private static ObservableList<String> dataTypes = FXCollections.observableArrayList();
 
+    /** a list of all the data types*/
+    private static ObservableList<String> dataTypesForFilter = FXCollections.observableArrayList();
+
     /**
      * makes a DataType with a name
      * @param name DataType name
@@ -27,6 +30,14 @@ public class DataType {
 
     public void setDataTypeName(String dataTypeName) {
         this.dataTypeName = dataTypeName;
+    }
+
+    public static ObservableList<String> getDataTypesForFilter() {
+        return dataTypesForFilter;
+    }
+
+    public static void setDataTypesForFilter(ObservableList<String> dataTypesForFilter) {
+        DataType.dataTypesForFilter = dataTypesForFilter;
     }
 
     public static ObservableList<String> getDataTypes() {

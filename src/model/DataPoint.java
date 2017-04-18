@@ -21,6 +21,9 @@ public class DataPoint {
     /** a list of all the datapoints*/
     private static ObservableList<DataPoint> pendingDataPoints = FXCollections.observableArrayList();
 
+    /** a list of all the datapoints*/
+    private static ObservableList<DataPoint> poiDetailDataPoints = FXCollections.observableArrayList();
+
     /**
      * makes a DataPoint with a location name, date, time, data value, data type, and approved status
      * used when loading from database
@@ -107,6 +110,14 @@ public class DataPoint {
 
     public static void setPendingDataPoints(ObservableList<DataPoint> pendingDataPoints) {
         DataPoint.pendingDataPoints = pendingDataPoints;
+    }
+
+    public static ObservableList<DataPoint> getPoiDetailDataPoints() {
+        return poiDetailDataPoints;
+    }
+
+    public static void setPoiDetailDataPoints(ObservableList<DataPoint> poiDetailDataPoints) {
+        DataPoint.poiDetailDataPoints = poiDetailDataPoints;
     }
 
     @Override
