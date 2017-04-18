@@ -97,6 +97,13 @@ public class POIDetailController {
                     currentPOI.setFlagged(newValue);
                     currentPOI.setDateFlagged(LocalDate.now().toString());
                     Model.getInstance().updatePOI(currentPOI);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initOwner(mainApplication.getWindow());
+                    alert.setTitle("POI Updated");
+                    alert.setContentText(currentPOI.getName() + " flagged changed to " + currentPOI.getFlagged());
+                    alert.showAndWait();
+
                 }
 //
             }
