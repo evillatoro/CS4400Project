@@ -70,8 +70,8 @@
       </Text>
       <ChoiceBox fx:id="poiLocationNameChoiceBox" layoutX="177.0" layoutY="81.0" prefHeight="27.0" prefWidth="165.0" />
       <TextField fx:id="zipCodeTextField" layoutX="177.0" layoutY="212.0" prefHeight="27.0" prefWidth="133.0" />
-      <DatePicker fx:id="fromDatePicker" layoutX="177.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
-      <DatePicker fx:id="toDatePicker" layoutX="342.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
+      <DatePicker fx:id="fromDatePicker" editable="false" layoutX="177.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
+      <DatePicker fx:id="toDatePicker" editable="false" layoutX="342.0" layoutY="292.0" prefHeight="27.0" prefWidth="109.0" />
       <Text layoutX="35.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State">
          <font>
             <Font name="Atlanta Book" size="13.0" />

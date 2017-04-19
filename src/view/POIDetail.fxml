@@ -85,10 +85,10 @@
             <Font name="Atlanta Book" size="10.0" />
          </font>
       </Text>
-      <JFXTimePicker fx:id="timePickerMin" defaultColor="BLACK" layoutX="237.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
-      <JFXDatePicker fx:id="datePickerMin" defaultColor="BLACK" layoutX="122.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
-      <JFXDatePicker fx:id="datePickerMax" defaultColor="BLACK" layoutX="389.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
-      <JFXTimePicker fx:id="timePickerMax" defaultColor="BLACK" layoutX="504.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
+      <JFXTimePicker fx:id="timePickerMin" editable="false" defaultColor="BLACK" layoutX="237.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
+      <JFXDatePicker fx:id="datePickerMin" editable="false" defaultColor="BLACK" layoutX="122.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
+      <JFXDatePicker fx:id="datePickerMax" editable="false" defaultColor="BLACK" layoutX="389.0" layoutY="167.0" prefHeight="29.0" prefWidth="115.0" />
+      <JFXTimePicker fx:id="timePickerMax" editable="false" defaultColor="BLACK" layoutX="504.0" layoutY="167.0" prefHeight="29.0" prefWidth="129.0" />
       <CheckBox fx:id="flaggedCheckBox" layoutX="504.0" layoutY="85.0" mnemonicParsing="false" text="Flagged" />
    </children>
 </Pane>

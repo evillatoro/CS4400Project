@@ -41,11 +41,10 @@ public class AddNewDataPointController {
     }
 
     /**
-     * sets the combo box with data types
+     * sets the combo box with data types and POI location names
      */
     @FXML
     public void initialize() {
-        //Model.getInstance().loadDataTypes();
         dataTypeComboBox.setItems(DataType.getDataTypes());
         dataTypeComboBox.setValue(DataType.getDataTypes().get(0));
 
@@ -69,6 +68,7 @@ public class AddNewDataPointController {
      */
     @FXML
     private void handleBackPressed() {
+        clearFields();
         mainApplication.displayFunctionalityCityScientistScene();
     }
 
@@ -85,11 +85,11 @@ public class AddNewDataPointController {
                     Integer.parseInt(dataValueNewDataPoint.getText()),
                     dataTypeComboBox.getValue()
             );
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             // if POI is successfully added, inform user it was successful
             if (Model.getInstance().addDataPoint(dataPoint)) {
                 clearFields();
                 // if the POI fails, notify the user
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.initOwner(mainApplication.getWindow());
                 alert.setTitle("Data Point Added");
                 alert.setHeaderText("Good Data Point Add");
@@ -97,7 +97,7 @@ public class AddNewDataPointController {
                 alert.showAndWait();
             } else {
                 // if the POI fails, notify the user
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setAlertType(Alert.AlertType.ERROR);
                 alert.initOwner(mainApplication.getWindow());
                 alert.setTitle("Data Point Not Added");
                 alert.setHeaderText("Bad Data Point Add");
@@ -126,7 +126,6 @@ public class AddNewDataPointController {
                 errorMessage += "No valid value entered!\n";
             }
         }
-
 
         if ((datePickerNewDataPoint.getValue() == null)) {
             errorMessage += "No date is entered!\n";

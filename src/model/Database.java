@@ -48,7 +48,6 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -199,6 +198,7 @@ public class Database {
         }
         return approval;
     }
+
     /**
      * loads the data types from the database
      */

@@ -34,47 +34,23 @@ public class CityState {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getState() {
         return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public static ObservableList<String> getCities() {
         return cities;
     }
 
-    public static void setCities(ObservableList<String> cities) {
-        CityState.cities = cities;
-    }
-
     public static ObservableList<String> getStates() {
         return states;
-    }
-
-    public static void setStates(ObservableList<String> states) {
-        CityState.states = states;
     }
 
     public static ObservableList<String> getCitiesForFilter() {
         return citiesForFilter;
     }
 
-    public static void setCitiesForFilter(ObservableList<String> citiesForFilter) {
-        CityState.citiesForFilter = citiesForFilter;
-    }
-
     public static ObservableList<String> getStatesForFilter() {
         return statesForFilter;
-    }
-
-    public static void setStatesForFilter(ObservableList<String> statesForFilter) {
-        CityState.statesForFilter = statesForFilter;
     }
 }

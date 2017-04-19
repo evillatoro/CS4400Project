@@ -10,14 +10,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="531.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewDataPointController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="531.0" style="-fx-border-color: black; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewDataPointController">
    <children>
       <Label layoutX="169.0" layoutY="27.0" text="Add a New Data Point" textFill="#c99e03">
          <font>
             <Font name="Atlanta Book" size="18.0" />
          </font>
       </Label>
-      <Button onAction="#handleSubmitPressed" layoutX="397.0" layoutY="241.0" mnemonicParsing="false" text="Submit">
+      <Button layoutX="397.0" layoutY="241.0" mnemonicParsing="false" onAction="#handleSubmitPressed" text="Submit">
          <font>
             <Font name="Atlanta Book" size="13.0" />
          </font>
@@ -57,7 +57,7 @@
             <Font name="Atlanta Book" size="13.0" />
          </font>
       </Button>
-      <JFXDatePicker fx:id="datePickerNewDataPoint" defaultColor="BLACK" layoutX="181.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
-      <JFXTimePicker fx:id="timePickerNewDataPoint" defaultColor="BLACK" layoutX="343.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
+      <JFXDatePicker fx:id="datePickerNewDataPoint" defaultColor="BLACK" editable="false" layoutX="181.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
+      <JFXTimePicker fx:id="timePickerNewDataPoint" defaultColor="BLACK" editable="false" layoutX="343.0" layoutY="99.0" prefHeight="29.0" prefWidth="137.0" />
    </children>
 </Pane>

@@ -28,16 +28,8 @@ public class DataType {
         return dataTypeName;
     }
 
-    public void setDataTypeName(String dataTypeName) {
-        this.dataTypeName = dataTypeName;
-    }
-
     public static ObservableList<String> getDataTypesForFilter() {
         return dataTypesForFilter;
-    }
-
-    public static void setDataTypesForFilter(ObservableList<String> dataTypesForFilter) {
-        DataType.dataTypesForFilter = dataTypesForFilter;
     }
 
     public static ObservableList<String> getDataTypes() {
