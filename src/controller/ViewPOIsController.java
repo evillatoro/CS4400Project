@@ -140,6 +140,7 @@ public class ViewPOIsController {
         poiLocationNameChoiceBox.getSelectionModel().select(0);
         cityChoiceBox.getSelectionModel().select(0);
         stateChoiceBox.getSelectionModel().select(0);
+        flaggedCheckBox.setSelected(false);
     }
 
     /**
