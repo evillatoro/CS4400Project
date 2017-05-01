@@ -18,7 +18,7 @@ public class POI {
     private final SimpleIntegerProperty zipCode;
     private final SimpleStringProperty city;
     private final SimpleStringProperty state;
-    private CityState cityState;
+    private CityState cityState = new CityState("", "");
 
     private final SimpleIntegerProperty numberOfReports;
     private final SimpleDoubleProperty moldMin;
@@ -62,6 +62,7 @@ public class POI {
      */
     public POI(String name, CityState cityState, int zipCode) {
         this(name, cityState.getCity(), cityState.getState(), zipCode, null, null, 0.0, 0.0, 0.0, 0.0, 0.0,0.0,0);
+        this.cityState = cityState;
     }
 
     /**
@@ -89,6 +90,7 @@ public class POI {
         this.aqMax = new SimpleDoubleProperty(aqMax);
         this.numberOfReports = new SimpleIntegerProperty(numberOfReports);
         this.flagged = new SimpleBooleanProperty(flagged);
+        cityState = new CityState(city, state);
     }
 
     public String getName() {
